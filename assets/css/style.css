@@ -45,19 +45,19 @@ hr {
 .correct {
     background-color: #1dd1a1;
     color: #fff;
-    border-color: #fff;
+    border-color: #222f3e;
 }
 
 .inWord {
     background-color: #feca57;
     color: #fff;
-    border-color: #fff;
+    border-color: #222f3e;
 }
 
 .notInWord {
     background-color: #576574;
     color: #fff;
-    border-color: #fff;
+    border-color: #222f3e;
 }
 
 /* Create keyboard style */
