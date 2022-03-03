@@ -51,5 +51,16 @@ function initialize() {
             const currTile = document.getElementById(row.toString() + '-' + col.toString());
             currTile.innerText = '';
         }
+        // Function to pull up udate an increment the row by 1
+        else if (e.code === 'Enter') {
+            update();
+            row += 1; // Start new row
+            col = 0; // Start at 0 for new row
+        }
+        // If row is equal to height, the user has used up all their attempts
+        if (!gameOver && row === height) {
+            gameOver = true;
+            document.querySelector('#answer').innerText = word;
+        }
     })
 }
