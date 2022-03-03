@@ -42,19 +42,19 @@ hr {
 }
 
 /* Tile Color Scheme */
-.correctColor {
+.correct {
     background-color: #1dd1a1;
     color: #fff;
     border-color: #fff;
 }
 
-.inWordColor {
+.inWord {
     background-color: #feca57;
     color: #fff;
     border-color: #fff;
 }
 
-.notInWordColor {
+.notInWord {
     background-color: #576574;
     color: #fff;
     border-color: #fff;
