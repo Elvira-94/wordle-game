@@ -1,5 +1,6 @@
 'use strict';
-// Javascript code below influenced by "Build a Wordle Clone in Javascript HTML CSS" https://youtu.be/ckjRsPaWHX8
+// Javascript code below influenced by "Build a Wordle Clone in Javascript HTML CSS" tutorial https://youtu.be/ckjRsPaWHX8
+// And "Build a Wordle Clone in Javascript HTML CSS Part 2" tutorial https://youtu.be/MM9FAV_CEkU
 
 var height = 6; // number of guesses
 var width = 5; // length of the word
@@ -68,24 +69,53 @@ function initialize() {
 // Function to call update below
 function update() { // iterate all the letters of the word that the user guessed
     let correct = 0;
+    let letterCount = {}; //KENNY _ > {K:1, E:1, N:2, Y:1}
+    for (let i = 0; i < word.length; i++) { // fill our guess map
+        let letter = word[i];
+        if (letterCount[letter]) { // if the letter is in the guess map, add 1
+            letterCount[letter] += 1;
+        } else { // otherwise we set it to 1
+            letterCount[letter] = 1;
+        }
+    }
+    // Let's iterate the guess word twice
+    // The first time we are going to check if the letters
+    // in the guess map are in the correct position and update accordingly
+    // The second time we iterate, we are going to check to see if there are letters that are not in the correct position 
+    //and we are going to use the guess map that 
+    // we've updated to make sure we don't get any duplicates
+
+
+    // first iteration, check all the correct ones
     for (let c = 0; c < width; c++) {
         let currTile = document.getElementById(row.toString() + '-' + c.toString());
         let letter = currTile.innerText;
 
-        //Is it in the correct position in the word?
+        //Is the letter in the correct position in the word?
         if (word[c] == letter) {
             currTile.classList.add('correct');
             correct += 1;
-        } // Is it in the word but in the wrong place?
-        else if (word.includes(letter)) {
-            currTile.classList.add('inWord');
-        } // Not in the word
-        else {
-            currTile.classList.add('notInWord');
+            letterCount[letter] -= 1;
         }
         // Another way for gameover if user guesses word correctly
         if (correct == width) {
             gameOver = true;
+        }
+    }
+    // Go again and mark which ones are present but in the wrong position
+    for (let c = 0; c < width; c++) {
+        let currTile = document.getElementById(row.toString() + '-' + c.toString());
+        let letter = currTile.innerText;
+
+        if (!currTile.classList.contains('correct')) {
+            // Is the letter in the word but in the wrong place?
+            if (word.includes(letter) && letterCount[letter] > 0) {
+                currTile.classList.add('inWord');
+                letterCount[letter] -= 1;
+            } // The letter is not in the word
+            else {
+                currTile.classList.add('notInWord');
+            }
         }
     }
 }
