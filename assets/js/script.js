@@ -66,8 +66,6 @@ function initialize() {
         // Function to pull up udate an increment the row by 1
         else if (e.code == 'Enter') {
             update();
-            row += 1; // Start new row
-            col = 0; // Start at 0 for new row
         }
         // If row is equal to height, the user has used up all their attempts
         if (!gameOver && row == height) {
@@ -79,6 +77,28 @@ function initialize() {
 
 // Function to call update below
 function update() { // iterate all the letters of the word that the user guessed
+
+    let guess = '';
+    document.getElementById('answer').innerText = '';
+
+    //string up the guess word
+    for (let c = 0; c < width; c++) {
+        let currTile = document.getElementById(row.toString() + '-' + c.toString());
+        let letter = currTile.innerText;
+        guess += letter;
+    }
+
+    guess = guess.toLowerCase();
+    if (!guessList.includes(guess)) {
+        Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: `Sorry, not in word list!`,
+            showConfirmButton: false,
+            timer: 2500
+        });
+    }
+    //start processing game
     let correct = 0;
     let letterCount = {}; //KENNY _ > {K:1, E:1, N:2, Y:1}
     for (let i = 0; i < word.length; i++) { // fill our guess map
@@ -129,4 +149,7 @@ function update() { // iterate all the letters of the word that the user guessed
             }
         }
     }
+
+    row += 1; // Start new row
+    col = 0; // Start at 0 for new row
 }
