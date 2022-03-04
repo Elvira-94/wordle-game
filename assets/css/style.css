@@ -61,7 +61,7 @@ hr {
 }
 
 /* Create keyboard style */
-.qwerty-row {
+.keyboard-row {
     width: 25rem;
     margin: 0 auto;
     display: flex;
