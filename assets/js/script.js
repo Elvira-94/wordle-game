@@ -37,21 +37,21 @@ function initialize() {
             tile.id = r.toString() + "-" + c.toString();
             tile.classList.add('tile');
             tile.innerText = '';
-            document.querySelector('#board').appendChild(tile);
+            document.getElementById('board').appendChild(tile);
         }
     }
 
     // Create QWERTY Keyboard
-    let qwerty = [
+    let keyboard = [
         ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
         ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ''],
         ['Enter', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '⌫']
     ]
 
-    for (let i = 0; 1 < qwerty.length; i++ ) {
-        let currRow = qwerty[i];
-        let qwertyRow = document.createElement('div');
-        qwertyRow.classList.add('qwerty-row');
+    for (let i = 0; i < keyboard.length; i++ ) {
+        let currRow = keyboard[i];
+        let keyboardRow = document.createElement('div');
+        keyboardRow.classList.add('keyboard-row');
 
         for (let j = 0; j < currRow.length; j++) {
             let keyTile = document.createElement('div');
@@ -75,9 +75,9 @@ function initialize() {
             } else {
                 keyTile.classList.add('key-tile');
             }
-            qwertyRow.appendChild(keyTile);
+            keyboardRow.appendChild(keyTile);
         }
-        document.body.appendChild(qwertyRow);
+        document.body.appendChild(keyboardRow);
     }
 
     // Process user input
@@ -88,7 +88,7 @@ function initialize() {
 }
 
 function processKey() {
-    let e = {'code' : this.id};
+    let e = { 'code' : this.id };
     processInput(e);
 }
 
@@ -174,8 +174,13 @@ function update() { // iterate all the letters of the word that the user guessed
         //Is the letter in the correct position in the word?
         if (word[c] == letter) {
             currTile.classList.add('correct');
+
+            let keyTile = document.getElementById('Key' + letter);
+            keyTile.classList.remove('inWord');
+            keyTile.classList.add('correct');
+
             correct += 1;
-            letterCount[letter] -= 1;
+            letterCount[letter] -= 1; // deduct the letter
         }
         // If player wins by guessing the correct word
         if (correct == width) {
@@ -195,14 +200,22 @@ function update() { // iterate all the letters of the word that the user guessed
         let currTile = document.getElementById(row.toString() + '-' + c.toString());
         let letter = currTile.innerText;
 
+        //skip letter if it has been marked correct
         if (!currTile.classList.contains('correct')) {
             // Is the letter in the word but in the wrong place?
             if (word.includes(letter) && letterCount[letter] > 0) {
                 currTile.classList.add('inWord');
+
+                let keyTile = document.getElementById('Key' + letter);
+                if (!keyTile.classList.contains('correct')) {
+                    keyTile.classList.add('inWord');
+                }
                 letterCount[letter] -= 1;
             } // The letter is not in the word
             else {
                 currTile.classList.add('notInWord');
+                let keyTile = document.getElementById('Key' + letter);
+                keyTile.classList.add('notInWord');
             }
         }
     }
