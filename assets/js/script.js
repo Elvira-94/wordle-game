@@ -188,6 +188,10 @@ function update() { // iterate all the letters of the word that the user guessed
     // first iteration, check all the correct ones
     for (let c = 0; c < width; c++) {
         let currTile = document.getElementById(row.toString() + '-' + c.toString());
+        let delay = 250 * c;
+        setTimeout(() => {
+            animateCSS(currTile, 'flipInX')
+        }, delay)
         let letter = currTile.innerText;
 
         //Is the letter in the correct position in the word?
