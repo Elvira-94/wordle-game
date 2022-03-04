@@ -23,7 +23,7 @@ console.log(word);
 // Call function for page to load
 window.onload = function () {
     initialize();
-}
+};
 
 function initialize() {
 
@@ -44,7 +44,7 @@ function initialize() {
         ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
         ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ''],
         ['Enter', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '⌫']
-    ]
+    ];
 
     for (let i = 0; i < keyboard.length; i++ ) {
         let currRow = keyboard[i];
@@ -82,7 +82,7 @@ function initialize() {
     //Listen for keypress
     document.addEventListener('keyup', (e) => {
         processInput(e);
-    })
+    });
 }
 
 function processKey() {
@@ -97,7 +97,7 @@ function processInput(e) {
         // Check to see if the column user is inputting letter into is less than 5
         if (col < width) {
             let currTile = document.getElementById(row.toString() + '-' + col.toString());
-            animateCSS(currTile, 'pulse')
+            animateCSS(currTile, 'pulse');
             if (currTile.innerText == '') {
                 currTile.innerText = e.code[3];
                 col += 1;
@@ -128,7 +128,7 @@ const animateCSS = (element, animation, prefix = 'animate__') =>
   new Promise((resolve, reject) => {
     const animationName = `${prefix}${animation}`;
     // const node = document.querySelector(element);
-    const node = element
+    const node = element;
     node.style.setProperty('--animate-duration', '0.3s');
     
     node.classList.add(`${prefix}animated`, animationName);
@@ -190,8 +190,8 @@ function update() { // iterate all the letters of the word that the user guessed
         let currTile = document.getElementById(row.toString() + '-' + c.toString());
         let delay = 250 * c;
         setTimeout(() => {
-            animateCSS(currTile, 'flipInX')
-        }, delay)
+            animateCSS(currTile, 'flipInX');
+        }, delay);
         let letter = currTile.innerText;
 
         //Is the letter in the correct position in the word?
@@ -214,7 +214,7 @@ function update() { // iterate all the letters of the word that the user guessed
                 title: 'You Won!',
                 showConfirmButton: false,
                 timer: 2500
-            })
+            });
         }
     }
 
