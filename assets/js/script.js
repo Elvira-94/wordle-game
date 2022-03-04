@@ -128,11 +128,19 @@ function update() { // iterate all the letters of the word that the user guessed
             correct += 1;
             letterCount[letter] -= 1;
         }
-        // Another way for gameover if user guesses word correctly
+        // If player wins by guessing the correct word
         if (correct == width) {
             gameOver = true;
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'You Won!',
+                showConfirmButton: false,
+                timer: 2500
+            })
         }
     }
+
     // Go again and mark which ones are present but in the wrong position
     for (let c = 0; c < width; c++) {
         let currTile = document.getElementById(row.toString() + '-' + c.toString());
