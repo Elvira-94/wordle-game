@@ -30,7 +30,7 @@ function initialize() {
     // Create the game board
     for (let r = 0; r < height; r++) {
         for (let c = 0; c < width; c++) {
-            // <span id="0-0" class="title">S</span>
+            // <span id="0-0" class="tile">S</span>
             let tile = document.createElement('span');
             tile.id = r.toString() + "-" + c.toString();
             tile.classList.add('tile');
@@ -97,6 +97,7 @@ function processInput(e) {
         // Check to see if the column user is inputting letter into is less than 5
         if (col < width) {
             let currTile = document.getElementById(row.toString() + '-' + col.toString());
+            animateCSS(currTile, 'pulse')
             if (currTile.innerText == '') {
                 currTile.innerText = e.code[3];
                 col += 1;
@@ -121,6 +122,26 @@ function processInput(e) {
         document.getElementById('answer').innerText = word;
     }
 }
+
+const animateCSS = (element, animation, prefix = 'animate__') =>
+  // We create a Promise and return it
+  new Promise((resolve, reject) => {
+    const animationName = `${prefix}${animation}`;
+    // const node = document.querySelector(element);
+    const node = element
+    node.style.setProperty('--animate-duration', '0.3s');
+    
+    node.classList.add(`${prefix}animated`, animationName);
+
+    // When the animation ends, we clean the classes and resolve the Promise
+    function handleAnimationEnd(event) {
+      event.stopPropagation();
+      node.classList.remove(`${prefix}animated`, animationName);
+      resolve('Animation ended');
+    }
+
+    node.addEventListener('animationend', handleAnimationEnd, {once: true});
+});
 
 // Function to call update below
 function update() { // iterate all the letters of the word that the user guessed
