@@ -61,7 +61,7 @@ hr {
 }
 
 /* Create keyboard style */
-.keyboard-row {
+.qwerty-row {
     width: 25rem;
     margin: 0 auto;
     display: flex;
@@ -70,23 +70,7 @@ hr {
 
 .key-tile {
     /* Tile Box */
-    width: 2.3rem;
-    height: 2.3rem;
-    margin: 1px;
-    border: 1px solid #c8d6e5;
-    border-radius: 4px;
-
-    /* Text */
-    font-size: 1.3rem;
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.enter-key-tile {
-    /* Enter Box */
-    width: 4.8rem;
+    width: 2.25rem;
     height: 2.5rem;
     margin: 1px;
     border: 1px solid #c8d6e5;
@@ -95,6 +79,24 @@ hr {
     /* Text */
     font-size: 1.3rem;
     font-weight: bold;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.enter-key-tile {
+    /* Enter Box */
+    width: 4.75rem;
+    height: 2.5rem;
+    margin: 1px;
+    border: 1px solid #c8d6e5;
+    border-radius: 4px;
+
+    /* Text */
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;

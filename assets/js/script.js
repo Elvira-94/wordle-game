@@ -40,39 +40,88 @@ function initialize() {
             document.querySelector('#board').appendChild(tile);
         }
     }
+
+    // Create QWERTY Keyboard
+    let qwerty = [
+        ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
+        ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ''],
+        ['Enter', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '⌫']
+    ]
+
+    for (let i = 0; 1 < qwerty.length; i++ ) {
+        let currRow = qwerty[i];
+        let qwertyRow = document.createElement('div');
+        qwertyRow.classList.add('qwerty-row');
+
+        for (let j = 0; j < currRow.length; j++) {
+            let keyTile = document.createElement('div');
+
+            let key = currRow[j];
+            keyTile.innerText = key;
+            if (key == 'Enter') {
+                keyTile.id = 'Enter';
+            }
+            else if (key == '⌫') {
+                keyTile.id = 'Backspace';
+            }
+            else if ('A' <= key && key <= 'Z') {
+                keyTile.id = 'Key' + key; // 'Key' + 'A'
+            }
+
+            keyTile.addEventListener('click', processKey);
+
+            if (key == 'Enter') {
+                keyTile.classList.add('enter-key-tile');
+            } else {
+                keyTile.classList.add('key-tile');
+            }
+            qwertyRow.appendChild(keyTile);
+        }
+        document.body.appendChild(qwertyRow);
+    }
+
     // Process user input
     //Listen for keypress
     document.addEventListener('keyup', (e) => {
-        if (gameOver) return;
-        // Check to see if user pressed an alphabet key letter within dictionary order
-        if ('KeyA' <= e.code && e.code <= 'KeyZ') {
-            // Check to see if the column user is inputting letter into is less than 5
-            if (col < width) {
-                let currTile = document.getElementById(row.toString() + '-' + col.toString());
-                if (currTile.innerText == '') {
-                    currTile.innerText = e.code[3];
-                    col += 1;
-                }
-            }
-        }
-        // If column user is currently on is between 0 and less than 5, backspace can be pressed
-        else if (e.code == 'Backspace') {
-            if (0 < col && col <= width) {
-                col -= 1;
-            }
-            let currTile = document.getElementById(row.toString() + '-' + col.toString());
-            currTile.innerText = '';
-        }
-        // Function to pull up udate an increment the row by 1
-        else if (e.code == 'Enter') {
-            update();
-        }
-        // If row is equal to height, the user has used up all their attempts
-        if (!gameOver && row == height) {
-            gameOver = true;
-            document.getElementById('answer').innerText = word;
-        }
+        processInput(e);
     })
+}
+
+function processKey() {
+    let e = {'code' : this.id};
+    processInput(e);
+}
+
+function processInput(e) {
+    if (gameOver) return;
+        // Check to see if user pressed an alphabet key letter within dictionary order
+    if ('KeyA' <= e.code && e.code <= 'KeyZ') {
+        // Check to see if the column user is inputting letter into is less than 5
+        if (col < width) {
+            let currTile = document.getElementById(row.toString() + '-' + col.toString());
+            if (currTile.innerText == '') {
+                currTile.innerText = e.code[3];
+                col += 1;
+            }
+        }
+    }
+    // If column user is currently on is between 0 and less than 5, backspace can be pressed
+    else if (e.code == 'Backspace') {
+        if (0 < col && col <= width) {
+            col -= 1;
+        }
+        let currTile = document.getElementById(row.toString() + '-' + col.toString());
+        currTile.innerText = '';
+    }
+    // Function to pull up udate an increment the row by 1
+    else if (e.code == 'Enter') {
+        update();
+    }
+    // If row is equal to height, the user has used up all their attempts
+    if (!gameOver && row == height) {
+        gameOver = true;
+        document.getElementById('answer').innerText = word;
+    }
 }
 
 // Function to call update below
