@@ -5,14 +5,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Wordle++</title>
+    <template id="game-instructions">
+        <swal-title>
+            Welcome to Wordle++
+        </swal-title>
+        <swal-icon type="info" color="blue"></swal-icon>
+        <swal-html>
+            <p>The game we all know and love, but a little bit better!</p>
+            <p>Here's how it works...</p>
+            <p>Guess the word by typing the letters in the boxes shown.
+                If you guessed a letter correctly, it will show up as green.
+                If you guess correctly but in the wrong position, it will show as yellow.
+                Try to guess the word before running out of guesses.
+            </p>
+        </swal-html>
+        <swal-button type="confirm">
+            Play
+        </swal-button>
+        <swal-param name="allowEscapeKey" value="false" />
+    </template>
 </head>
 
 <body>
     <h1 id="title">Wordle++</h1>
+    <button data-swal-template="#game-instructions">
+        How to play
+    </button>
     <hr>
     <br>
     <div id="board">
@@ -21,8 +43,8 @@
     <br>
     <h1 id="answer"></h1>
     <!-- Toastr Javascript libray & Animate.css library below -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-    crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <!-- Sweet Alert 2 Javascript library below -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

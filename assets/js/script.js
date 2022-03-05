@@ -23,6 +23,18 @@ var word = 'CREAM';
 var word = wordList[Math.floor(Math.random() * wordList.length)].toUpperCase();
 console.log(word);
 
+Swal.bindClickHandler()
+
+Swal.mixin({
+    toast: false,
+}).bindClickHandler('data-swal-template')
+
+function showInstructions() {
+
+    Swal.fire({
+        template: '#game-instructions'
+    });
+}
 
 // Call function for page to load
 window.onload = function () {
@@ -30,6 +42,9 @@ window.onload = function () {
 };
 
 function initialize() {
+
+    // Welcome the user to the game and show them how to play
+    showInstructions()
 
     // Create the game board
     for (let r = 0; r < height; r++) {
