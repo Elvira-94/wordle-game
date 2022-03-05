@@ -101,3 +101,13 @@ hr {
     justify-content: center;
     align-items: center;
 }
+
+img#correct-letter {
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+img#inWord-letter {
+    max-width: 80%;
+    margin: 0 auto;
+}
