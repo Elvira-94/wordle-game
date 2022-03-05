@@ -173,6 +173,8 @@ function update() { // iterate all the letters of the word that the user guessed
             showConfirmButton: false,
             timer: 2500
         });
+
+        return
     }
     //start processing game
     let correct = 0;
