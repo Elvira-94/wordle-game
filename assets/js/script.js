@@ -118,7 +118,12 @@ function processInput(e) {
     }
     // Function to pull up udate an increment the row by 1
     else if (e.code == 'Enter') {
-        if (col == width) {
+
+        if (Swal.isVisible()) {
+            //If a popup is currently open, close it and allow the player to keep playing
+            Swal.close()
+        } else if (col == width) {
+            // Only call update if 5 letters are entered
             update();
         }
     }
