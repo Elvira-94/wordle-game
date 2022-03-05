@@ -118,7 +118,9 @@ function processInput(e) {
     }
     // Function to pull up udate an increment the row by 1
     else if (e.code == 'Enter') {
-        update();
+        if (col == width) {
+            update();
+        }
     }
     // If row is equal to height, the user has used up all their attempts
     if (!gameOver && row == height) {
