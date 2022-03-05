@@ -1,8 +1,12 @@
 'use strict';
 // Javascript code below influenced by "Build a Wordle Clone in Javascript HTML CSS" tutorial https://youtu.be/ckjRsPaWHX8
 // And "Build a Wordle Clone in Javascript HTML CSS Part 2" tutorial https://youtu.be/MM9FAV_CEkU
-import { wordList } from "./words.js";
-import { guessList } from "./guesses.js";
+import {
+    wordList
+} from "./words.js";
+import {
+    guessList
+} from "./guesses.js";
 
 var height = 6; // number of guesses
 var width = 5; // length of the word
@@ -46,7 +50,7 @@ function initialize() {
         ['Enter', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '⌫']
     ];
 
-    for (let i = 0; i < keyboard.length; i++ ) {
+    for (let i = 0; i < keyboard.length; i++) {
         let currRow = keyboard[i];
         let keyboardRow = document.createElement('div');
         keyboardRow.classList.add('keyboard-row');
@@ -58,11 +62,9 @@ function initialize() {
             keyTile.innerText = key;
             if (key == 'Enter') {
                 keyTile.id = 'Enter';
-            }
-            else if (key == '⌫') {
+            } else if (key == '⌫') {
                 keyTile.id = 'Backspace';
-            }
-            else if ('A' <= key && key <= 'Z') {
+            } else if ('A' <= key && key <= 'Z') {
                 keyTile.id = 'Key' + key; // 'Key' + 'A'
             }
 
@@ -86,13 +88,15 @@ function initialize() {
 }
 
 function processKey() {
-    let e = { 'code' : this.id };
+    let e = {
+        'code': this.id
+    };
     processInput(e);
 }
 
 function processInput(e) {
     if (gameOver) return;
-        // Check to see if user pressed an alphabet key letter within dictionary order
+    // Check to see if user pressed an alphabet key letter within dictionary order
     if ('KeyA' <= e.code && e.code <= 'KeyZ') {
         // Check to see if the column user is inputting letter into is less than 5
         if (col < width) {
@@ -124,24 +128,26 @@ function processInput(e) {
 }
 
 const animateCSS = (element, animation, prefix = 'animate__') =>
-  // We create a Promise and return it
-  new Promise((resolve, reject) => {
-    const animationName = `${prefix}${animation}`;
-    // const node = document.querySelector(element);
-    const node = element;
-    node.style.setProperty('--animate-duration', '0.3s');
-    
-    node.classList.add(`${prefix}animated`, animationName);
+    // We create a Promise and return it
+    new Promise((resolve, reject) => {
+        const animationName = `${prefix}${animation}`;
+        // const node = document.querySelector(element);
+        const node = element;
+        node.style.setProperty('--animate-duration', '0.3s');
 
-    // When the animation ends, we clean the classes and resolve the Promise
-    function handleAnimationEnd(event) {
-      event.stopPropagation();
-      node.classList.remove(`${prefix}animated`, animationName);
-      resolve('Animation ended');
-    }
+        node.classList.add(`${prefix}animated`, animationName);
 
-    node.addEventListener('animationend', handleAnimationEnd, {once: true});
-});
+        // When the animation ends, we clean the classes and resolve the Promise
+        function handleAnimationEnd(event) {
+            event.stopPropagation();
+            node.classList.remove(`${prefix}animated`, animationName);
+            resolve('Animation ended');
+        }
+
+        node.addEventListener('animationend', handleAnimationEnd, {
+            once: true
+        });
+    });
 
 // Function to call update below
 function update() { // iterate all the letters of the word that the user guessed
