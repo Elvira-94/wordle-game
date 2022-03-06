@@ -37,7 +37,7 @@ function showInstructions() {
 }
 
 function chooseRandomWord() {
-    var chosenWord = wordList[Math.floor(Math.random() * wordList.length)].toUpperCase();
+    let chosenWord = wordList[Math.floor(Math.random() * wordList.length)].toUpperCase();
     console.log(chosenWord)
     return chosenWord
 }
@@ -48,6 +48,14 @@ function drawGame() {
 
     // Create QWERTY Keyboard
     drawKeyboard();
+}
+
+function clearGame() {
+    // Clear the game board
+    clearGrid();
+
+    // Clear QWERTY Keyboard
+    clearKeyboard();
 }
 
 function drawGrid() {
@@ -124,27 +132,40 @@ function clearKeyboard() {
     keyboard.remove();
 }
 
+// Resets current row and column to 0 and re-initialised game
+function resetGame() {
+    col = 0;
+    row = 0;
+
+    initialize(false);
+}
+
 // Call function for page to load
 window.onload = function () {
-    initialize();
+    initialize(true);
 };
 
-function initialize() {
+function initialize(firstLoad) {
 
-    // Welcome the user to the game and show them how to play
-    showInstructions();
+    if (firstLoad) {
+        // Welcome the user to the game and show them how to play
+        showInstructions();
+
+        // Process user input
+        //Listen for keypress
+        document.addEventListener('keyup', (e) => {
+            processInput(e);
+        });
+
+    } else {
+        clearGame();
+    }
 
     // Choose the random word 
     word = chooseRandomWord();
 
     // Draw game resources 
     drawGame();
-
-    // Process user input
-    //Listen for keypress
-    document.addEventListener('keyup', (e) => {
-        processInput(e);
-    });
 }
 
 function processKey() {
@@ -155,7 +176,6 @@ function processKey() {
 }
 
 function processInput(e) {
-    if (gameOver) return;
     // Check to see if user pressed an alphabet key letter within dictionary order
     if ('KeyA' <= e.code && e.code <= 'KeyZ') {
         // Check to see if the column user is inputting letter into is less than 5
@@ -287,9 +307,13 @@ function update() { // iterate all the letters of the word that the user guessed
                 position: 'center',
                 icon: 'success',
                 title: 'You Won!',
-                showConfirmButton: false,
+                showConfirmButton: true,
+                confirmButtonText: 'Play Again',
                 timer: 2500
             });
+
+            resetGame();
+            return;
         }
     }
 
