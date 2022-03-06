@@ -64,6 +64,17 @@ function drawGrid() {
     }
 }
 
+function clearGrid() {
+    // Remove grid boxes from grid one by one 
+
+    let board = document.getElementById('board');
+
+    while (board.hasChildNodes()) {
+        board.removeChild(board.lastChild);
+    }
+
+}
+
 function drawKeyboard() {
 
     let keyboard = [
@@ -71,6 +82,9 @@ function drawKeyboard() {
         ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ''],
         ['Enter', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '⌫']
     ];
+
+    let keyboardContainer = document.createElement('div');
+    keyboardContainer.id = 'keyboard-container';
 
     for (let i = 0; i < keyboard.length; i++) {
         let currRow = keyboard[i];
@@ -99,9 +113,15 @@ function drawKeyboard() {
             }
             keyboardRow.appendChild(keyTile);
         }
-        document.body.appendChild(keyboardRow);
+        keyboardContainer.appendChild(keyboardRow);
     }
 
+    document.body.appendChild(keyboardContainer);
+}
+
+function clearKeyboard() {
+    let keyboard = document.getElementById('keyboard-container');
+    keyboard.remove();
 }
 
 // Call function for page to load
