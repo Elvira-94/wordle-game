@@ -42,20 +42,8 @@ function chooseRandomWord() {
     return chosenWord
 }
 
-// Call function for page to load
-window.onload = function () {
-    initialize();
-};
+function drawGrid() {
 
-function initialize() {
-
-    // Welcome the user to the game and show them how to play
-    showInstructions()
-
-    // Choose the random word 
-    word = chooseRandomWord()
-
-    // Create the game board
     for (let r = 0; r < height; r++) {
         for (let c = 0; c < width; c++) {
             // <span id="0-0" class="tile">S</span>
@@ -66,8 +54,10 @@ function initialize() {
             document.getElementById('board').appendChild(tile);
         }
     }
+}
 
-    // Create QWERTY Keyboard
+function drawKeyboard() {
+
     let keyboard = [
         ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
         ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ''],
@@ -103,6 +93,27 @@ function initialize() {
         }
         document.body.appendChild(keyboardRow);
     }
+
+}
+
+// Call function for page to load
+window.onload = function () {
+    initialize();
+};
+
+function initialize() {
+
+    // Welcome the user to the game and show them how to play
+    showInstructions();
+
+    // Choose the random word 
+    word = chooseRandomWord();
+
+    // Create the game board
+    drawGrid();
+
+    // Create QWERTY Keyboard
+    drawKeyboard();
 
     // Process user input
     //Listen for keypress
