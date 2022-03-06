@@ -212,7 +212,6 @@ function processInput(e) {
     // If row is equal to height minus, the user has used up all their attempts
     if (!gameOver && row == height) {
         gameOver = true;
-        // document.getElementById('answer').innerText = word;
 
         Swal.fire({
             position: 'center',
@@ -256,7 +255,6 @@ const animateCSS = (element, animation, prefix = 'animate__') =>
 function update() { // iterate all the letters of the word that the user guessed
 
     let guess = '';
-    document.getElementById('answer').innerText = '';
 
     //string up the guess word
     for (let c = 0; c < width; c++) {
