@@ -9,7 +9,9 @@ import {
 } from "./guesses.js";
 
 var maxGuesses = 10;
+var minGuesses = 1;
 var maxWordLength = 7;
+var minWordLength = 3;
 
 var guessCount = 6; // number of guesses
 var wordLength = 5; // length of the word
@@ -37,6 +39,46 @@ function showInstructions() {
     Swal.fire({
         template: '#game-instructions'
     });
+}
+
+function showSettings() {
+
+    // SweetAlert2 Multiple Inputs not suported so this is their recommended method:
+    // https://sweetalert2.github.io/#input-types
+    (async () => {
+
+        const {
+            value: formValues
+        } = await Swal.fire({
+            title: 'Settings',
+            html: '<p><label for="guessCount">Guess Count:</label>' +
+                '<input id="guessCount" type="number" min="' + minGuesses + '"max="' + maxGuesses + '" value="' + guessCount + '" class="swal2-input"></p>' +
+                '<label for="wordLength">Word Length:</label>' +
+                '<input id="wordLength" type="number" min="' + minWordLength + '" max="' + maxWordLength + '" value="' + wordLength + '" class="swal2-input">',
+            focusConfirm: false,
+            showCancelButton: true,
+            preConfirm: () => {
+
+                if (parseInt(document.getElementById('guessCount').value)) {
+                    guessCount = parseInt(document.getElementById('guessCount').value);
+                }
+
+                if (parseInt(document.getElementById('wordLength').value)) {
+                    wordLength = parseInt(document.getElementById('wordLength').value);
+                }
+
+
+
+            },
+            didClose: (toast) => {
+                document.activeElement.blur(); // Unfocus the button that toggled the toast as enter key presses button again
+            }
+        })
+
+    })()
+
+    resetGame();
+
 }
 
 function chooseRandomWord() {
@@ -160,6 +202,12 @@ function initialize(firstLoad) {
         document.addEventListener('keyup', (e) => {
             processInput(e);
         });
+
+        let gameSettingsButton = document.getElementById('game-settings')
+        gameSettingsButton.addEventListener("click", () => {
+            showSettings();
+        });
+
 
     } else {
         clearGame();

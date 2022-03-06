@@ -35,12 +35,34 @@
         </swal-button>
         <swal-param name="allowEscapeKey" value="false" />
     </template>
+    <!-- <template id="game-settings">
+        <swal-title>
+            Settings
+        </swal-title>
+        <swal-icon type="question" color="blue"></swal-icon>
+        <swal-html>
+
+
+        </swal-html>
+        <swal-input type="range" label="Guess Count" placeholder="Guess Count." value="5" />
+        <swal-input-option value="Test">test?</swal-input-option>
+        <swal-button type="confirm">
+            Apply
+        </swal-button>
+        <swal-button type="deny">
+            Cancel
+        </swal-button>
+        <swal-param name="allowEscapeKey" value="false" />
+    </template> -->
 </head>
 
 <body>
-    <h1 id="title">Wordle++</h1>
     <button data-swal-template="#game-instructions">
         How to play
+    </button>
+    <h1 id="title">Wordle++</h1>
+    <button id="game-settings">
+        Configure
     </button>
     <hr>
     <br>
