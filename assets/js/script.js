@@ -8,8 +8,11 @@ import {
     guessList
 } from "./guesses.js";
 
-var height = 6; // number of guesses
-var width = 5; // length of the word
+var maxGuesses = 10;
+var maxWordLength = 7;
+
+var guessCount = 6; // number of guesses
+var wordLength = 5; // length of the word
 
 var row = 0; // current guess (attempt #)
 var col = 0; // current letter for that attempt
@@ -60,8 +63,8 @@ function clearGame() {
 
 function drawGrid() {
 
-    for (let r = 0; r < height; r++) {
-        for (let c = 0; c < width; c++) {
+    for (let r = 0; r < guessCount; r++) {
+        for (let c = 0; c < wordLength; c++) {
             // <span id="0-0" class="tile">S</span>
             let tile = document.createElement('span');
             tile.id = r.toString() + "-" + c.toString();
@@ -180,7 +183,7 @@ function processInput(e) {
     // Check to see if user pressed an alphabet key letter within dictionary order
     if ('KeyA' <= e.code && e.code <= 'KeyZ') {
         // Check to see if the column user is inputting letter into is less than 5
-        if (col < width) {
+        if (col < wordLength) {
             let currTile = document.getElementById(row.toString() + '-' + col.toString());
             animateCSS(currTile, 'pulse');
             if (currTile.innerText == '') {
@@ -191,7 +194,7 @@ function processInput(e) {
     }
     // If column user is currently on is between 0 and less than 5, backspace can be pressed
     else if (e.code == 'Backspace') {
-        if (0 < col && col <= width) {
+        if (0 < col && col <= wordLength) {
             col -= 1;
         }
         let currTile = document.getElementById(row.toString() + '-' + col.toString());
@@ -203,14 +206,14 @@ function processInput(e) {
         if (Swal.isVisible()) {
             //If a popup is currently open, close it and allow the player to keep playing
             Swal.close()
-        } else if (col == width) {
+        } else if (col == wordLength) {
             // Only call update if 5 letters are entered
             update();
         }
     }
 
-    // If row is equal to height minus, the user has used up all their attempts
-    if (!gameOver && row == height) {
+    // If row is equal to guessCount minus, the user has used up all their attempts
+    if (!gameOver && row == guessCount) {
         gameOver = true;
 
         Swal.fire({
@@ -257,7 +260,7 @@ function update() { // iterate all the letters of the word that the user guessed
     let guess = '';
 
     //string up the guess word
-    for (let c = 0; c < width; c++) {
+    for (let c = 0; c < wordLength; c++) {
         let currTile = document.getElementById(row.toString() + '-' + c.toString());
         let letter = currTile.innerText;
         guess += letter;
@@ -295,7 +298,7 @@ function update() { // iterate all the letters of the word that the user guessed
 
 
     // first iteration, check all the correct ones
-    for (let c = 0; c < width; c++) {
+    for (let c = 0; c < wordLength; c++) {
         let currTile = document.getElementById(row.toString() + '-' + c.toString());
         let delay = 250 * c;
         setTimeout(() => {
@@ -316,7 +319,7 @@ function update() { // iterate all the letters of the word that the user guessed
         }
         // If player wins by guessing the correct word
         // .then() code inspired from https://sweetalert2.github.io/#ajax-request
-        if (correct == width) {
+        if (correct == wordLength) {
             gameOver = true;
             Swal.fire({
                 position: 'center',
@@ -334,7 +337,7 @@ function update() { // iterate all the letters of the word that the user guessed
     }
 
     // Go again and mark which ones are present but in the wrong position
-    for (let c = 0; c < width; c++) {
+    for (let c = 0; c < wordLength; c++) {
         let currTile = document.getElementById(row.toString() + '-' + c.toString());
         let letter = currTile.innerText;
 
