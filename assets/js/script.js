@@ -211,6 +211,19 @@ function processInput(e) {
     if (!gameOver && row == height) {
         gameOver = true;
         document.getElementById('answer').innerText = word;
+
+        Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Game Over',
+            showConfirmButton: true,
+            confirmButtonText: 'Play Again',
+            timer: 2500
+        }).then(() => {
+            resetGame();
+        });
+
+        return;
     }
 }
 
