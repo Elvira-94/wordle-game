@@ -137,6 +137,7 @@ function resetGame() {
     col = 0;
     row = 0;
 
+    gameOver = false;
     initialize(false);
 }
 
@@ -207,15 +208,17 @@ function processInput(e) {
             update();
         }
     }
-    // If row is equal to height, the user has used up all their attempts
+
+    // If row is equal to height minus, the user has used up all their attempts
     if (!gameOver && row == height) {
         gameOver = true;
-        document.getElementById('answer').innerText = word;
+        // document.getElementById('answer').innerText = word;
 
         Swal.fire({
             position: 'center',
             icon: 'error',
             title: 'Game Over',
+            text: 'The word was: ' + word,
             showConfirmButton: true,
             confirmButtonText: 'Play Again',
             timer: 2500
