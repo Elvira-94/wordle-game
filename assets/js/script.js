@@ -27,6 +27,9 @@ Swal.bindClickHandler()
 
 Swal.mixin({
     toast: false,
+    didClose: (toast) => {
+        document.activeElement.blur(); // Unfocus the button that toggled the toast as enter key presses button again
+    }
 }).bindClickHandler('data-swal-template')
 
 function showInstructions() {
