@@ -42,6 +42,14 @@ function chooseRandomWord() {
     return chosenWord
 }
 
+function drawGame() {
+    // Create the game board
+    drawGrid();
+
+    // Create QWERTY Keyboard
+    drawKeyboard();
+}
+
 function drawGrid() {
 
     for (let r = 0; r < height; r++) {
@@ -109,11 +117,8 @@ function initialize() {
     // Choose the random word 
     word = chooseRandomWord();
 
-    // Create the game board
-    drawGrid();
-
-    // Create QWERTY Keyboard
-    drawKeyboard();
+    // Draw game resources 
+    drawGame();
 
     // Process user input
     //Listen for keypress
