@@ -301,6 +301,7 @@ function update() { // iterate all the letters of the word that the user guessed
             letterCount[letter] -= 1; // deduct the letter
         }
         // If player wins by guessing the correct word
+        // .then() code inspired from https://sweetalert2.github.io/#ajax-request
         if (correct == width) {
             gameOver = true;
             Swal.fire({
@@ -310,9 +311,10 @@ function update() { // iterate all the letters of the word that the user guessed
                 showConfirmButton: true,
                 confirmButtonText: 'Play Again',
                 timer: 2500
+            }).then(() => {
+                resetGame();
             });
 
-            resetGame();
             return;
         }
     }
