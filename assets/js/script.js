@@ -59,14 +59,37 @@ function showSettings() {
             showCancelButton: true,
             preConfirm: () => {
 
-                if (parseInt(document.getElementById('guessCount').value)) {
+                let validWordLength = false;
+                let validGuessCount = false;
+
+                if (parseInt(document.getElementById('guessCount').value) <= maxGuesses && parseInt(document.getElementById('guessCount').value) >= minGuesses) {
+                    validGuessCount = true;
+                }
+
+                if (parseInt(document.getElementById('wordLength').value) <= maxWordLength && parseInt(document.getElementById('wordLength').value) >= minWordLength) {
+                    validWordLength = true;
+                }
+
+                if (!validGuessCount && !validWordLength) {
+                    Swal.showValidationMessage("Please enter a valid word length and guess count."); // Show error when validation fails.
+                    Swal.enableButtons(); // Enable the confirm button again.
+                } else if (!validGuessCount) {
+                    Swal.showValidationMessage("Please enter a valid guess count."); // Show error when validation fails.
+                    Swal.enableButtons(); // Enable the confirm button again.
+                } else if (!validWordLength) {
+                    Swal.showValidationMessage("Please enter a valid word length."); // Show error when validation fails.
+                    Swal.enableButtons(); // Enable the confirm button again.
+                } else {
                     guessCount = parseInt(document.getElementById('guessCount').value);
-                }
-
-                if (parseInt(document.getElementById('wordLength').value)) {
                     wordLength = parseInt(document.getElementById('wordLength').value);
-                }
 
+                    // Dynamically update the width of the board so that the grid allows the appropriate number of tiles
+                    // https://css-tricks.com/updating-a-css-variable-with-javascript/
+                    let root = document.documentElement;
+                    root.style.setProperty('--letterCount', wordLength);
+
+                    resetGame();
+                }
 
 
             },
@@ -77,7 +100,7 @@ function showSettings() {
 
     })()
 
-    resetGame();
+
 
 }
 
