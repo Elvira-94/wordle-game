@@ -15,13 +15,10 @@ var row = 0; // current guess (attempt #)
 var col = 0; // current letter for that attempt
 
 var gameOver = false; // rule for game over
-// var word = "QUEEN";
 
 var guessListWordListCombination = guessList.concat(wordList);
 
-var word = 'CREAM';
-var word = wordList[Math.floor(Math.random() * wordList.length)].toUpperCase();
-console.log(word);
+var word = '';
 
 Swal.bindClickHandler()
 
@@ -39,6 +36,12 @@ function showInstructions() {
     });
 }
 
+function chooseRandomWord() {
+    var chosenWord = wordList[Math.floor(Math.random() * wordList.length)].toUpperCase();
+    console.log(chosenWord)
+    return chosenWord
+}
+
 // Call function for page to load
 window.onload = function () {
     initialize();
@@ -48,6 +51,9 @@ function initialize() {
 
     // Welcome the user to the game and show them how to play
     showInstructions()
+
+    // Choose the random word 
+    word = chooseRandomWord()
 
     // Create the game board
     for (let r = 0; r < height; r++) {
