@@ -3,10 +3,8 @@
 // And "Build a Wordle Clone in Javascript HTML CSS Part 2" tutorial https://youtu.be/MM9FAV_CEkU
 import {
     wordList
-} from "./words.js";
-import {
-    guessList
-} from "./guesses.js";
+} from "./possible-words.js";
+
 
 var maxGuesses = 10;
 var minGuesses = 1;
@@ -21,7 +19,9 @@ var col = 0; // current letter for that attempt
 
 var gameOver = false; // rule for game over
 
-var guessListWordListCombination = guessList.concat(wordList);
+// var guessListWordListCombination = guessList.concat(wordList);
+
+
 
 var word = '';
 
@@ -105,7 +105,9 @@ function showSettings() {
 }
 
 function chooseRandomWord() {
-    let chosenWord = wordList[Math.floor(Math.random() * wordList.length)].toUpperCase();
+
+    let chosenWord = wordList[wordLength][Math.floor(Math.random() * wordList[wordLength].length)].toUpperCase();
+
     console.log(chosenWord)
     return chosenWord
 }
@@ -338,7 +340,7 @@ function update() { // iterate all the letters of the word that the user guessed
     }
 
     guess = guess.toLowerCase();
-    if (!guessListWordListCombination.includes(guess)) {
+    if (!wordList[wordLength].includes(guess)) {
         Swal.fire({
             position: 'center',
             icon: 'error',
