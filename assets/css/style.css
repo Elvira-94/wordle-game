@@ -111,3 +111,7 @@ img#inWord-letter {
     max-width: 80%;
     margin: 0 auto;
 }
+
+div#keyboard-container {
+    margin-top: 2rem;
+}
