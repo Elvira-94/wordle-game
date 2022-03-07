@@ -112,6 +112,63 @@ For this site, the main font that was used is a standard 'Arial' which defaults 
 
 ## Bugs Stories
 
+During the creation of this project, I discovered a number of issues that slowed progress; examples of the major bugs and their remedies are shown below.
+
+### Bug:
+When inputting the letters in the column, it initially stopped working after implementing a query selector to get the id of the letters. Chrome Dev Tools gave off the following warning: Uncaught DOMException: Failed to execute 'querySelector' on 'Document': '0-0' is not a valid selector.
+
+### Fix:
+To fix this, I decided to change the query selector to get element by ID which targetted the id instead.
+
+### Result:
+This fixed the issue and the letters could be inputted and seen clearly in the columns without issue.
+
+### Bug:
+When you typed 5 'Q's, you could see that you got 5 hints but the word is 'QUEEN' where there is only one 'Q' in the word so only the green hint should show up.
+
+### Fix:
+<!-- TODO -->
+
+### Result: 
+<!-- TODO -->
+### Bug:
+You could make a guess with two letters for example.
+
+### Fix:
+To fix this, I need to add a check to see if all 5 letters were entered before calling the update function.
+
+### Result:
+'If col == width" fixed this issue so you could only make a guess when all 5 letters were entered by the user.
+
+### Bug:
+If you entered an invalid word the game still processed it.
+
+### Fix:
+To fix his, I added a return statement to check if the guess the user inputs is a valid word inside the update function. 
+
+### Result:
+If you entered an invalid word the game now did not move you along the next guess and wouldn't give you any hints so the user could go back and change their guess.
+
+### Bug:
+When you hit enter to get rid of the pop-up, it would submit the user's guess again causing the pop-up to keep popping up.
+
+### Fix:
+<!-- TODO -->
+
+### Result:
+Now if you enter a word such as 'APPLE' when you hit enter, the pop-up now goes away.
+
+### Bug:
+When you clicked the instructions button, the button would be focused when the user continues to play the game.
+
+### Fix:
+This was fixed by unfocusing the button using .blur() after the alert is closed.
+
+### Result:
+Now when the user hits enter, the button is pressed again rather than the guess being submitted.
+
+
+
 ## Bugs Unfixed
 
 # Deployment
