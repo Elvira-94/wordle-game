@@ -34,6 +34,42 @@ The **user** is any person who likes to play word guessing games and would like 
 | 8 | USER | As a user, I want to be able to start a new random Wordle++ when the current one ends | So I can see if I can beat my score |
 | 9 | USER | As a user, when I play Wordle++ I want to be able to customize the amount of guesses or letters in the word (e.g guess a 3-letter word in 4 tries) | So the game can be as challenging as possible |
 
+## Design Choices
+
+### Colour Scheme
+
+After reviewing several color schemes with potential users of the site, I settled on the following Canadian Palette by Dmitri Litvinov, which allows for a lively color palette with acceptable contrast ratios.
+
+* Background color: #222f3e
+* Tile Color Hints: #1dd1a1 (Correct Letter), #feca57 (Letter In Word), #576574 (Letter Not In Word)
+* Keyboard color: #c8d6e5 
+* Text: #fff a stardard white that allows text to be easily read on the dark background
+
+<p align="center"><img src="docs/images/color-scheme.png" width="50%" height="50%" alt="Colour palette"></p>
+
+### Typography
+
+For this site, the main font that was used is a standard 'Arial' which defaults back to 'Helvetica, sans-serif.' 
+
+## Design Wireframes
+
+## Site Structure
+
+# Features
+
+## Navigation
+
+## Home Screen
+
+## Settings Screen
+
+## How to Play Screen
+
+# Future Features
+
+
+
+
 
 
 # Technologies Used
