@@ -1,4 +1,3 @@
-'use strict';
 // Javascript code below influenced by "Build a Wordle Clone in Javascript HTML CSS" tutorial https://youtu.be/ckjRsPaWHX8
 // And "Build a Wordle Clone in Javascript HTML CSS Part 2" tutorial https://youtu.be/MM9FAV_CEkU
 import {
@@ -21,18 +20,16 @@ var gameOver = false; // rule for game over
 
 // var guessListWordListCombination = guessList.concat(wordList);
 
-
-
 var word = '';
 
-Swal.bindClickHandler()
+Swal.bindClickHandler();
 
 Swal.mixin({
     toast: false,
     didClose: (toast) => {
         document.activeElement.blur(); // Unfocus the button that toggled the toast as enter key presses button again
     }
-}).bindClickHandler('data-swal-template')
+}).bindClickHandler('data-swal-template');
 
 function showInstructions() {
 
@@ -96,20 +93,17 @@ function showSettings() {
             didClose: (toast) => {
                 document.activeElement.blur(); // Unfocus the button that toggled the toast as enter key presses button again
             }
-        })
+        });
 
-    })()
-
-
-
+    })();
 }
 
 function chooseRandomWord() {
 
     let chosenWord = wordList[wordLength][Math.floor(Math.random() * wordList[wordLength].length)].toUpperCase();
 
-    console.log(chosenWord)
-    return chosenWord
+    console.log(chosenWord);
+    return chosenWord;
 }
 
 function drawGame() {
@@ -221,26 +215,21 @@ function initialize(firstLoad) {
     if (firstLoad) {
         // Welcome the user to the game and show them how to play
         showInstructions();
-
         // Process user input
         //Listen for keypress
         document.addEventListener('keyup', (e) => {
             processInput(e);
         });
 
-        let gameSettingsButton = document.getElementById('game-settings')
+        let gameSettingsButton = document.getElementById('game-settings');
         gameSettingsButton.addEventListener("click", () => {
             showSettings();
         });
-
-
     } else {
         clearGame();
     }
-
     // Choose the random word 
     word = chooseRandomWord();
-
     // Draw game resources 
     drawGame();
 }
@@ -278,7 +267,7 @@ function processInput(e) {
 
         if (Swal.isVisible()) {
             //If a popup is currently open, close it and allow the player to keep playing
-            Swal.close()
+            Swal.close();
         } else if (col == wordLength) {
             // Only call update if 5 letters are entered
             update();
@@ -349,7 +338,7 @@ function update() { // iterate all the letters of the word that the user guessed
             timer: 2500
         });
 
-        return
+        return;
     }
     //start processing game
     let correct = 0;
