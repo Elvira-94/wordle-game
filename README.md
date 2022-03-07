@@ -51,7 +51,19 @@ After reviewing several color schemes with potential users of the site, I settle
 
 For this site, the main font that was used is a standard 'Arial' which defaults back to 'Helvetica, sans-serif.' 
 
-## Design Wireframes
+## Wireframe Mock-ups
+
+### Desktop
+
+<p align="center"><img src="docs/images/desktop.png" width="60%" height="60%" alt="Low Fidelity Desktop Wireframe"></p>
+
+### Tablet
+
+<p align="center"><img src="docs/images/tablet.png" width="50%" height="50%" alt="Low Fidelity Tablet Wireframe"></p>
+
+### Mobile
+
+<p align="center"><img src="docs/images/mobile.png" width="50%" height="50%" alt="Low Fidelity Mobile Wireframe"></p>
 
 ## Site Structure
 
@@ -67,11 +79,6 @@ For this site, the main font that was used is a standard 'Arial' which defaults 
 
 # Future Features
 
-
-
-
-
-
 # Technologies Used
 * [HTML5](https://en.wikipedia.org/wiki/HTML) - to provide the content and structure for the site.
 * [CSS3](https://en.wikipedia.org/wiki/CSS) - to provide the styling for the site.
@@ -79,7 +86,8 @@ For this site, the main font that was used is a standard 'Arial' which defaults 
 * [Gitpod](https://www.gitpod.io/) - to create and edit the site's code.
 * [Github](https://github.com/) - to host and deploy the site.
 * [Gitbash](https://en.wikipedia.org/wiki/Bash_(Unix_shell)) - to push changes to the GitHub repository.
-* [Sweet Alert2 ](https://sweetalert2.github.io/) - to implement pop-ups for user input and answers.
+* [Balsamiq](https://balsamiq.com/) - to create low fidelity wireframes for site.
+* [Sweet Alert2](https://sweetalert2.github.io/) - to implement pop-ups for user input and answers.
 * [Animate.css](https://animate.style/) - to animate elements for the site.
 * [Flat UI Colours](https://flatuicolors.com/palette/ca) to reference colours for this site that would look well together.
 * [Compressor](https://compressor.io/) - to compress the images.
