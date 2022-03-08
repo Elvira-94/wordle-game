@@ -14,6 +14,7 @@ let row = 0;
 let col = 0;
 let gameOver = false;
 let word = '';
+let current_user = 'Elvira';
 
 Swal.bindClickHandler();
 Swal.mixin({
@@ -27,6 +28,86 @@ function showInstructions() {
     Swal.fire({
         template: '#game-instructions'
     });
+}
+
+/**
+ * 
+ * Creates a JSON object containing stats with 0 guesses (per wordLength setting)
+ * 
+ * @param {string} user 
+ */
+function populateNewUserStats(user) {
+    let scores = {}
+
+    for (let i = 1; i <= maxWordLength; i++) {
+        scores[i] = {}
+        for (let j = 1; j <= maxGuesses; j++) {
+            scores[i][j] = 0
+        }
+    }
+
+    localStorage.setItem(user, JSON.stringify(scores));
+    console.log(localStorage.getItem(user));
+}
+
+
+/**
+ * 
+ * Returns a users stats as a JSON object. Called by other functions. 
+ * 
+ * Reference below is inspiration for storing JSON in local storage
+ * https://stackoverflow.com/questions/2010892/how-to-store-objects-in-html5-localstorage
+ * 
+ * @param {string} user 
+ * @param {number} wordLength 
+ * @returns 
+ */
+function getUserStats(user, wordLength = null) {
+
+    if (!localStorage.getItem(user)) {
+        populateNewUserStats(user);
+    }
+
+    if (wordLength) {
+        return JSON.parse(localStorage.getItem(user))[wordLength];
+    } else {
+        return JSON.parse(localStorage.getItem(user));
+    }
+}
+
+/**
+ * 
+ * Displays a users stats as an alert on the page. Calls getUserStats() to populate stat data
+ * 
+ * @param {string} user 
+ * @param {number} wordLength 
+ */
+function displayUserStats(user, wordLength) {
+    Swal.fire({
+        position: 'center',
+        icon: 'info',
+        title: 'Stats',
+        text: JSON.stringify(getUserStats(user, wordLength)),
+        showConfirmButton: true,
+        confirmButtonText: 'Close',
+        didClose: (toast) => {
+            document.activeElement.blur();
+        }
+    });
+}
+
+/**
+ * 
+ * Increments a high score value for a given user using the current word length configuration of the page 
+ * 
+ * @param {string} user
+ * @param {number} guess_num  
+ */
+function incrementStats(user, guess_num) {
+    let user_stats = getUserStats(user);
+
+    user_stats[wordLength][guess_num] = parseInt(user_stats[wordLength][guess_num]) + 1;
+    localStorage.setItem(user, JSON.stringify(user_stats));
 }
 
 function showSettings() {
@@ -173,12 +254,18 @@ window.onload = function () {
 function initialize(firstLoad) {
     if (firstLoad) {
         showInstructions();
+        getUserStats(current_user)
         document.addEventListener('keyup', (e) => {
             processInput(e);
         });
         let gameSettingsButton = document.getElementById('game-settings');
         gameSettingsButton.addEventListener("click", () => {
             showSettings();
+        });
+
+        let gameStatsButton = document.getElementById('game-stats');
+        gameStatsButton.addEventListener("click", () => {
+            displayUserStats(current_user, wordLength);
         });
     } else {
         clearGame();
@@ -324,6 +411,9 @@ function update() { // iterate all the letters of the word that the user guessed
         // .then() code inspired from https://sweetalert2.github.io/#ajax-request
         if (correct == wordLength) {
             gameOver = true;
+
+            incrementStats(current_user, row + 1);
+
             Swal.fire({
                 position: 'center',
                 icon: 'success',
