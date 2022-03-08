@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Wordle++</title>
     <template id="game-instructions">
         <swal-title>
@@ -35,32 +36,15 @@
         </swal-button>
         <swal-param name="allowEscapeKey" value="false" />
     </template>
-    <!-- <template id="game-settings">
-        <swal-title>
-            Settings
-        </swal-title>
-        <swal-icon type="question" color="blue"></swal-icon>
-        <swal-html>
-
-
-        </swal-html>
-        <swal-input type="range" label="Guess Count" placeholder="Guess Count." value="5" />
-        <swal-input-option value="Test">test?</swal-input-option>
-        <swal-button type="confirm">
-            Apply
-        </swal-button>
-        <swal-button type="deny">
-            Cancel
-        </swal-button>
-        <swal-param name="allowEscapeKey" value="false" />
-    </template> -->
 </head>
 
 <body>
     <button data-swal-template="#game-instructions">
         How to play
     </button>
-    <h1 id="title">Wordle++</h1>
+    <a href="/">
+        <h1 id="title">Wordle++</h1>
+    </a>
     <button id="game-settings">
         Configure
     </button>
@@ -69,6 +53,10 @@
     <div id="board">
 
     </div>
+
+
+    <!-- Font awesome script -->
+    <script src="https://kit.fontawesome.com/7e02640559.js" crossorigin="anonymous"></script>
     <!-- Sweet Alert 2 Javascript library below -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="module" src="assets/js/script.js"></script>
