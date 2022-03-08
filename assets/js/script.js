@@ -4,46 +4,35 @@ import {
     wordList
 } from "./possible-words.js";
 
-
-var maxGuesses = 10;
-var minGuesses = 1;
-var maxWordLength = 7;
-var minWordLength = 3;
-
-var guessCount = 6; // number of guesses
-var wordLength = 5; // length of the word
-
-var row = 0; // current guess (attempt #)
-var col = 0; // current letter for that attempt
-
-var gameOver = false; // rule for game over
-
-// var guessListWordListCombination = guessList.concat(wordList);
-
-var word = '';
+const maxGuesses = 10;
+const minGuesses = 1;
+const maxWordLength = 7;
+const minWordLength = 3;
+let guessCount = 6;
+let wordLength = 5;
+let row = 0;
+let col = 0;
+let gameOver = false;
+let word = '';
 
 Swal.bindClickHandler();
-
 Swal.mixin({
     toast: false,
     didClose: (toast) => {
-        document.activeElement.blur(); // Unfocus the button that toggled the toast as enter key presses button again
+        document.activeElement.blur();
     }
 }).bindClickHandler('data-swal-template');
 
 function showInstructions() {
-
     Swal.fire({
         template: '#game-instructions'
     });
 }
 
 function showSettings() {
-
     // SweetAlert2 Multiple Inputs not suported so this is their recommended method:
     // https://sweetalert2.github.io/#input-types
     (async () => {
-
         const {
             value: formValues
         } = await Swal.fire({
@@ -55,10 +44,8 @@ function showSettings() {
             focusConfirm: false,
             showCancelButton: true,
             preConfirm: () => {
-
                 let validWordLength = false;
                 let validGuessCount = false;
-
                 if (parseInt(document.getElementById('guessCount').value) <= maxGuesses && parseInt(document.getElementById('guessCount').value) >= minGuesses) {
                     validGuessCount = true;
                 }
@@ -68,14 +55,14 @@ function showSettings() {
                 }
 
                 if (!validGuessCount && !validWordLength) {
-                    Swal.showValidationMessage("Please enter a valid word length and guess count."); // Show error when validation fails.
-                    Swal.enableButtons(); // Enable the confirm button again.
+                    Swal.showValidationMessage("Please enter a valid word length and guess count.");
+                    Swal.enableButtons();
                 } else if (!validGuessCount) {
-                    Swal.showValidationMessage("Please enter a valid guess count."); // Show error when validation fails.
-                    Swal.enableButtons(); // Enable the confirm button again.
+                    Swal.showValidationMessage("Please enter a valid guess count.");
+                    Swal.enableButtons();
                 } else if (!validWordLength) {
-                    Swal.showValidationMessage("Please enter a valid word length."); // Show error when validation fails.
-                    Swal.enableButtons(); // Enable the confirm button again.
+                    Swal.showValidationMessage("Please enter a valid word length.");
+                    Swal.enableButtons();
                 } else {
                     guessCount = parseInt(document.getElementById('guessCount').value);
                     wordLength = parseInt(document.getElementById('wordLength').value);
@@ -84,51 +71,37 @@ function showSettings() {
                     // https://css-tricks.com/updating-a-css-variable-with-javascript/
                     let root = document.documentElement;
                     root.style.setProperty('--letterCount', wordLength);
-
                     resetGame();
                 }
-
-
             },
             didClose: (toast) => {
                 document.activeElement.blur(); // Unfocus the button that toggled the toast as enter key presses button again
             }
         });
-
     })();
 }
 
 function chooseRandomWord() {
-
     let chosenWord = wordList[wordLength][Math.floor(Math.random() * wordList[wordLength].length)].toUpperCase();
-
     console.log(chosenWord);
     return chosenWord;
 }
 
 function drawGame() {
-    // Create the game board
     drawGrid();
-
-    // Create QWERTY Keyboard
     drawKeyboard();
 }
 
 function clearGame() {
-    // Clear the game board
     clearGrid();
-
-    // Clear QWERTY Keyboard
     clearKeyboard();
 }
 
 function drawGrid() {
-
-    for (let r = 0; r < guessCount; r++) {
-        for (let c = 0; c < wordLength; c++) {
-            // <span id="0-0" class="tile">S</span>
+    for (let row = 0; row < guessCount; row++) {
+        for (let col = 0; col < wordLength; col++) {
             let tile = document.createElement('span');
-            tile.id = r.toString() + "-" + c.toString();
+            tile.id = row.toString() + "-" + col.toString();
             tile.classList.add('tile');
             tile.innerText = '';
             document.getElementById('board').appendChild(tile);
@@ -138,34 +111,26 @@ function drawGrid() {
 
 function clearGrid() {
     // Remove grid boxes from grid one by one 
-
     let board = document.getElementById('board');
-
     while (board.hasChildNodes()) {
         board.removeChild(board.lastChild);
     }
-
 }
 
 function drawKeyboard() {
-
     let keyboard = [
         ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
         ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ''],
         ['Enter', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '⌫']
     ];
-
     let keyboardContainer = document.createElement('div');
     keyboardContainer.id = 'keyboard-container';
-
     for (let i = 0; i < keyboard.length; i++) {
         let currRow = keyboard[i];
         let keyboardRow = document.createElement('div');
         keyboardRow.classList.add('keyboard-row');
-
         for (let j = 0; j < currRow.length; j++) {
             let keyTile = document.createElement('div');
-
             let key = currRow[j];
             keyTile.innerText = key;
             if (key == 'Enter') {
@@ -175,9 +140,7 @@ function drawKeyboard() {
             } else if ('A' <= key && key <= 'Z') {
                 keyTile.id = 'Key' + key; // 'Key' + 'A'
             }
-
             keyTile.addEventListener('click', processKey);
-
             if (key == 'Enter') {
                 keyTile.classList.add('enter-key-tile');
             } else {
@@ -187,7 +150,6 @@ function drawKeyboard() {
         }
         keyboardContainer.appendChild(keyboardRow);
     }
-
     document.body.appendChild(keyboardContainer);
 }
 
@@ -200,27 +162,20 @@ function clearKeyboard() {
 function resetGame() {
     col = 0;
     row = 0;
-
     gameOver = false;
     initialize(false);
 }
 
-// Call function for page to load
 window.onload = function () {
     initialize(true);
 };
 
 function initialize(firstLoad) {
-
     if (firstLoad) {
-        // Welcome the user to the game and show them how to play
         showInstructions();
-        // Process user input
-        //Listen for keypress
         document.addEventListener('keyup', (e) => {
             processInput(e);
         });
-
         let gameSettingsButton = document.getElementById('game-settings');
         gameSettingsButton.addEventListener("click", () => {
             showSettings();
@@ -228,9 +183,7 @@ function initialize(firstLoad) {
     } else {
         clearGame();
     }
-    // Choose the random word 
     word = chooseRandomWord();
-    // Draw game resources 
     drawGame();
 }
 
@@ -244,27 +197,27 @@ function processKey() {
 function processInput(e) {
     // Check to see if user pressed an alphabet key letter within dictionary order
     if ('KeyA' <= e.code && e.code <= 'KeyZ') {
-        // Check to see if the column user is inputting letter into is less than 5
         if (col < wordLength) {
             let currTile = document.getElementById(row.toString() + '-' + col.toString());
             animateCSS(currTile, 'pulse');
+
             if (currTile.innerText == '') {
                 currTile.innerText = e.code[3];
                 col += 1;
             }
         }
-    }
-    // If column user is currently on is between 0 and less than 5, backspace can be pressed
-    else if (e.code == 'Backspace') {
+
+    } else if (e.code == 'Backspace') {
+        // If column user is currently on is between 0 and less than 5, backspace can be pressed
         if (0 < col && col <= wordLength) {
             col -= 1;
         }
+
         let currTile = document.getElementById(row.toString() + '-' + col.toString());
         currTile.innerText = '';
-    }
-    // Function to pull up udate an increment the row by 1
-    else if (e.code == 'Enter') {
 
+    } else if (e.code == 'Enter') {
+        // Function to pull up udate an increment the row by 1
         if (Swal.isVisible()) {
             //If a popup is currently open, close it and allow the player to keep playing
             Swal.close();
@@ -277,7 +230,6 @@ function processInput(e) {
     // If row is equal to guessCount minus, the user has used up all their attempts
     if (!gameOver && row == guessCount) {
         gameOver = true;
-
         Swal.fire({
             position: 'center',
             icon: 'error',
@@ -289,7 +241,6 @@ function processInput(e) {
         }).then(() => {
             resetGame();
         });
-
         return;
     }
 }
@@ -298,10 +249,8 @@ const animateCSS = (element, animation, prefix = 'animate__') =>
     // We create a Promise and return it
     new Promise((resolve, reject) => {
         const animationName = `${prefix}${animation}`;
-        // const node = document.querySelector(element);
         const node = element;
         node.style.setProperty('--animate-duration', '0.3s');
-
         node.classList.add(`${prefix}animated`, animationName);
 
         // When the animation ends, we clean the classes and resolve the Promise
@@ -310,24 +259,19 @@ const animateCSS = (element, animation, prefix = 'animate__') =>
             node.classList.remove(`${prefix}animated`, animationName);
             resolve('Animation ended');
         }
-
         node.addEventListener('animationend', handleAnimationEnd, {
             once: true
         });
     });
 
-// Function to call update below
 function update() { // iterate all the letters of the word that the user guessed
-
-    let guess = '';
-
     //string up the guess word
+    let guess = '';
     for (let c = 0; c < wordLength; c++) {
         let currTile = document.getElementById(row.toString() + '-' + c.toString());
         let letter = currTile.innerText;
         guess += letter;
     }
-
     guess = guess.toLowerCase();
     if (!wordList[wordLength].includes(guess)) {
         Swal.fire({
@@ -337,13 +281,12 @@ function update() { // iterate all the letters of the word that the user guessed
             showConfirmButton: false,
             timer: 2500
         });
-
         return;
     }
-    //start processing game
+
     let correct = 0;
     let letterCount = {}; //KENNY _ > {K:1, E:1, N:2, Y:1}
-    for (let i = 0; i < word.length; i++) { // fill our guess map
+    for (let i = 0; i < word.length; i++) {
         let letter = word[i];
         if (letterCount[letter]) { // if the letter is in the guess map, add 1
             letterCount[letter] += 1;
@@ -351,13 +294,13 @@ function update() { // iterate all the letters of the word that the user guessed
             letterCount[letter] = 1;
         }
     }
+
     // Let's iterate the guess word twice
     // The first time we are going to check if the letters
     // in the guess map are in the correct position and update accordingly
     // The second time we iterate, we are going to check to see if there are letters that are not in the correct position 
     //and we are going to use the guess map that 
     // we've updated to make sure we don't get any duplicates
-
 
     // first iteration, check all the correct ones
     for (let c = 0; c < wordLength; c++) {
@@ -368,17 +311,15 @@ function update() { // iterate all the letters of the word that the user guessed
         }, delay);
         let letter = currTile.innerText;
 
-        //Is the letter in the correct position in the word?
         if (word[c] == letter) {
             currTile.classList.add('correct');
-
             let keyTile = document.getElementById('Key' + letter);
             keyTile.classList.remove('inWord');
             keyTile.classList.add('correct');
-
             correct += 1;
             letterCount[letter] -= 1; // deduct the letter
         }
+
         // If player wins by guessing the correct word
         // .then() code inspired from https://sweetalert2.github.io/#ajax-request
         if (correct == wordLength) {
@@ -393,7 +334,6 @@ function update() { // iterate all the letters of the word that the user guessed
             }).then(() => {
                 resetGame();
             });
-
             return;
         }
     }
@@ -403,13 +343,12 @@ function update() { // iterate all the letters of the word that the user guessed
         let currTile = document.getElementById(row.toString() + '-' + c.toString());
         let letter = currTile.innerText;
 
-        //skip letter if it has been marked correct
         if (!currTile.classList.contains('correct')) {
-            // Is the letter in the word but in the wrong place?
+
             if (word.includes(letter) && letterCount[letter] > 0) {
                 currTile.classList.add('inWord');
-
                 let keyTile = document.getElementById('Key' + letter);
+
                 if (!keyTile.classList.contains('correct')) {
                     keyTile.classList.add('inWord');
                 }
