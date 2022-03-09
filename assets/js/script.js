@@ -97,6 +97,7 @@ function getUserStats(user, wordLength = null) {
 function displayUserStats(user, wordLength) {
     let stats = getUserStats(user, wordLength);
     let divContainer = document.createElement('div');
+    divContainer.innerText = 'Word Length: ' + wordLength;
 
     let totalGuesses = 0
     for (let item in Object.keys(stats)) {
