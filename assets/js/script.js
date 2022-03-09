@@ -14,7 +14,7 @@ let row = 0;
 let col = 0;
 let gameOver = false;
 let word = '';
-let current_user = 'Elvira';
+let current_user = '';
 
 Swal.bindClickHandler();
 Swal.mixin({
@@ -24,10 +24,23 @@ Swal.mixin({
     }
 }).bindClickHandler('data-swal-template');
 
-function showInstructions() {
-    Swal.fire({
-        template: '#game-instructions'
+/**
+ * Shows the instructions for the game as an alert.
+ * Creates a promise for the alert, so that only when the alert is closed does the function resolve.
+ */
+async function showInstructions() {
+
+    let promise = new Promise(function (resolve) {
+        Swal.fire({
+            template: '#game-instructions',
+            didClose: (toast) => {
+                console.log('Resolving promise');
+                resolve();
+            }
+        });
     });
+
+    await promise;
 }
 
 /**
@@ -49,7 +62,6 @@ function populateNewUserStats(user) {
     localStorage.setItem(user, JSON.stringify(scores));
     console.log(localStorage.getItem(user));
 }
-
 
 /**
  * 
@@ -86,7 +98,7 @@ function displayUserStats(user, wordLength) {
     Swal.fire({
         position: 'center',
         icon: 'info',
-        title: 'Stats',
+        title: 'Stats for ' + current_user,
         text: JSON.stringify(getUserStats(user, wordLength)),
         showConfirmButton: true,
         confirmButtonText: 'Close',
@@ -247,17 +259,65 @@ function resetGame() {
     initialize(false);
 }
 
+/**
+ * Prompts the user to input their name. 
+ * If we have previously had a user play the game, we prepopulate the input with the last user's name
+ */
+async function getPlayingUser() {
+    let lastKnownUser = localStorage.getItem('lastKnownUser');
+    let inputText = "";
+
+    if (lastKnownUser) {
+        inputText = lastKnownUser;
+    }
+
+    const {
+        value: user
+    } = await Swal.fire({
+        position: 'center',
+        icon: 'info',
+        title: "Who's Playing?",
+        input: 'text',
+        inputLabel: 'Your name: ',
+        inputValue: inputText,
+        showConfirmButton: true,
+        confirmButtonText: 'Submit',
+        inputValidator: (value) => {
+            if (!value) {
+                return 'Please enter a name!'
+            }
+        }
+    });
+
+    if (user) {
+        current_user = user;
+        localStorage.setItem('lastKnownUser', current_user);
+    }
+}
+
 window.onload = function () {
     initialize(true);
 };
 
-function initialize(firstLoad) {
+async function initialize(firstLoad) {
+
+    if (!firstLoad) {
+        clearGame()
+    }
+
+    word = chooseRandomWord();
+    drawGame();
+
     if (firstLoad) {
-        showInstructions();
+        await showInstructions().then(async () => {
+            await getPlayingUser(); // We want to ask the user for their name on first opening of the site, after the welcome/instructions alert
+        });
+
         getUserStats(current_user)
         document.addEventListener('keyup', (e) => {
             processInput(e);
         });
+
         let gameSettingsButton = document.getElementById('game-settings');
         gameSettingsButton.addEventListener("click", () => {
             showSettings();
@@ -267,11 +327,7 @@ function initialize(firstLoad) {
         gameStatsButton.addEventListener("click", () => {
             displayUserStats(current_user, wordLength);
         });
-    } else {
-        clearGame();
     }
-    word = chooseRandomWord();
-    drawGame();
 }
 
 function processKey() {

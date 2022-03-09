@@ -9,12 +9,14 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Wordle++</title>
+</head>
+
+<body>
     <template id="game-instructions">
         <swal-title>
             Welcome to Wordle++
         </swal-title>
         <swal-icon type="info" color="blue"></swal-icon>
-        <swal-input type="text" label="Who's playing?"></swal-input>
         <swal-html>
             <p>The game we all know and love, but a little bit better!</p>
             <p>Here's how it works...</p>
@@ -37,9 +39,6 @@
         </swal-button>
         <swal-param name="allowEscapeKey" value="false" />
     </template>
-</head>
-
-<body>
     <button data-swal-template="#game-instructions">
         How to play
     </button>
