@@ -43,26 +43,34 @@
         </swal-button>
         <swal-param name="allowEscapeKey" value="false" />
     </template>
-    <button data-swal-template="#game-instructions">
-        How to play
-    </button>
-    <a href="/">
-        <h1 id="title">Wordle++</h1>
-    </a>
-    <button id="game-stats">
-        Stats
-    </button>
-    <button id="game-settings">
-        Configure
-    </button>
-    <hr>
-    <br>
-    <div id="board">
 
+    <!-- Header Section -->
+
+    <div class="header">
+        <div class="header-menu-item">
+            <i class="fas fa-question icon-white fa-2x" data-swal-template="#game-instructions"></i>
+        </div>
+        <div class="header-title-text">
+            <a href="/">
+                <h1 id="title">Wordle++</h1>
+            </a>
+        </div>
+        <div class="header-menu-item">
+            <i class="fas fa-poll icon-white fa-2x" id="game-stats"></i>
+        </div>
+        <div class="header-menu-item">
+            <i class="fas fa-cog icon-white fa-2x" id="game-settings"></i>
+        </div>
+        <hr>
     </div>
+    <br>
+
+    <!-- Game Section -->
+
+    <div id="board"></div>
 
 
-    <!-- Font awesome script -->
+    <!-- font awesome script -->
     <script src="https://kit.fontawesome.com/7e02640559.js" crossorigin="anonymous"></script>
     <!-- Sweet Alert 2 Javascript library below -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

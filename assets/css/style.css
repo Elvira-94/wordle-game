@@ -10,12 +10,44 @@ body {
 }
 
 hr {
-    width: 31.25rem;
+    display: grid;
+    grid-column-start: 1;
+    grid-column-end: 6;
+    width: 100%;
     background-color: #c8d6e5;
 }
 
 a {
     text-decoration: none;
+}
+
+ul {
+    list-style-type: none;
+    width: 100%;
+    padding: 0;
+}
+
+li {
+    display: inline-block;
+}
+
+.header {
+    width: 31.25rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 0.5fr 0.5fr 2fr 0.5fr 0.5fr;
+}
+
+div.header-title-text {
+    display: grid;
+    grid-column-start: 3;
+    grid-column-end: 3;
+}
+
+div.header-menu-item {
+    display: grid;
+    margin: 0 auto;
+    align-items: center;
 }
 
 #title {
@@ -163,6 +195,10 @@ div#keyboard-container {
     background-color: #7cc4ff;
     display: inline-block;
     height: 100%;
+}
+
+.icon-white {
+    color: #fff;
 }
 
 /* For medium screen sizes from 950px (59.4rem) wide and down */
