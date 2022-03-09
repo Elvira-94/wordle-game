@@ -101,9 +101,6 @@ function displayUserStats(user, wordLength) {
     let totalGuesses = 0
     for (let item in Object.keys(stats)) {
         totalGuesses = totalGuesses + parseInt(stats[parseInt(item) + 1]);
-        console.log('TOTAL');
-        console.log(totalGuesses);
-
     }
 
     for (let item in Object.keys(stats)) {
