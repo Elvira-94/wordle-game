@@ -95,17 +95,46 @@ function getUserStats(user, wordLength = null) {
  * @param {number} wordLength 
  */
 function displayUserStats(user, wordLength) {
+    let stats = getUserStats(user, wordLength);
+    let divContainer = document.createElement('div');
+
+    let totalGuesses = 0
+    for (let item in Object.keys(stats)) {
+        totalGuesses = totalGuesses + parseInt(stats[parseInt(item) + 1]);
+        console.log('TOTAL');
+        console.log(totalGuesses);
+
+    }
+
+    for (let item in Object.keys(stats)) {
+        let guessNum = parseInt(item) + 1
+        let percentage = Math.ceil((parseInt(stats[guessNum]) / totalGuesses) * 100)
+        let innerDiv = document.createElement('div');
+
+        innerDiv.classList.add('progress');
+        innerDiv.setAttribute("data-label-left", guessNum);
+        innerDiv.setAttribute("data-label-right", stats[guessNum]);
+
+        let span = document.createElement('span');
+        span.classList.add('value');
+        span.style = "width:" + percentage + "%;";
+
+        innerDiv.appendChild(span);
+        divContainer.appendChild(innerDiv);
+    }
+
     Swal.fire({
         position: 'center',
         icon: 'info',
         title: 'Stats for ' + current_user,
-        text: JSON.stringify(getUserStats(user, wordLength)),
         showConfirmButton: true,
         confirmButtonText: 'Close',
+        html: divContainer,
         didClose: (toast) => {
             document.activeElement.blur();
         }
     });
+
 }
 
 /**
@@ -113,13 +142,13 @@ function displayUserStats(user, wordLength) {
  * Increments a high score value for a given user using the current word length configuration of the page 
  * 
  * @param {string} user
- * @param {number} guess_num  
+ * @param {number} guessNum  
  */
-function incrementStats(user, guess_num) {
-    let user_stats = getUserStats(user);
+function incrementStats(user, guessNum) {
+    let userStats = getUserStats(user);
 
-    user_stats[wordLength][guess_num] = parseInt(user_stats[wordLength][guess_num]) + 1;
-    localStorage.setItem(user, JSON.stringify(user_stats));
+    userStats[wordLength][guessNum] = parseInt(userStats[wordLength][guessNum]) + 1;
+    localStorage.setItem(user, JSON.stringify(userStats));
 }
 
 function showSettings() {
