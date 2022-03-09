@@ -225,6 +225,17 @@ Further reading and troubleshooting on cloning a repository from GitHub can be f
 * [CSS Tricks](https://css-tricks.com/updating-a-css-variable-with-javascript/) - to dynamically update the width of the board so that the grid allows the appropriate number of tiles.
 * [Free Code Camp Tutorial](https://www.freecodecamp.org/news/build-a-wordle-clone-in-javascript/) - to better understand how to implement animate.css to site and to creat import word lists to js script following instructions by Paul Akinyemi.
 * [Digital Ocean Tutorial](https://www.digitalocean.com/community/tutorials/for-loops-for-of-loops-and-for-in-loops-in-javascript) - to better understand how to implement for loops to site code following instructions by Tania Rascia.
+* [Stack Overflow](https://stackoverflow.com/questions/2010892/how-to-store-objects-in-html5-localstorage) - to implement storing JSON objects in local storage for keeping track of user stats.
+* [Article by Borislav Hadzhiev](https://bobbyhadz.com/blog/javascript-unexpected-reserved-word-await) - to help resolve unexpected reserved word 'await' Error in code.
+* [W3Schools Javascript Async/Await](https://www.w3schools.com/js/tryit.asp?filename=tryjs_async2) - to help solidify learning async and await functions to make promises easier to write in code.
+* [W3Schools Javascript Promises](https://www.w3schools.com/js/js_promise.asp) - to help solidify learning Javascript promises.
+
+
+
+
+
+
+
 
 
 
