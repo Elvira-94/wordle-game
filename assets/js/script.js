@@ -4,6 +4,8 @@ import {
     wordList
 } from "./possible-words.js";
 
+const minSupportedScreenWidth = 320;
+const mobileScreenWidthThreshold = 800;
 const maxGuesses = 10;
 const minGuesses = 1;
 const maxWordLength = 7;
@@ -15,6 +17,13 @@ let col = 0;
 let gameOver = false;
 let word = '';
 let current_user = '';
+let alertWidth = "";
+
+if (window.innerWidth < mobileScreenWidthThreshold) {
+    alertWidth = "80%";
+} else {
+    alertWidth = "30%";
+}
 
 Swal.bindClickHandler();
 Swal.mixin({
@@ -33,6 +42,7 @@ async function showInstructions() {
     let promise = new Promise(function (resolve) {
         Swal.fire({
             template: '#game-instructions',
+            width: alertWidth,
             didClose: (toast) => {
                 console.log('Resolving promise');
                 resolve();
@@ -121,9 +131,11 @@ function displayUserStats(user, wordLength) {
         divContainer.appendChild(innerDiv);
     }
 
+
     Swal.fire({
         position: 'center',
         icon: 'info',
+        width: alertWidth,
         title: 'Stats for ' + current_user,
         showConfirmButton: true,
         confirmButtonText: 'Close',
@@ -163,6 +175,7 @@ function showSettings() {
                 '<input id="wordLength" type="number" min="' + minWordLength + '" max="' + maxWordLength + '" value="' + wordLength + '" class="swal2-input">',
             focusConfirm: false,
             showCancelButton: true,
+            width: alertWidth,
             preConfirm: () => {
                 let validWordLength = false;
                 let validGuessCount = false;
@@ -303,6 +316,7 @@ async function getPlayingUser() {
     } = await Swal.fire({
         position: 'center',
         icon: 'info',
+        width: alertWidth,
         title: "Who's Playing?",
         input: 'text',
         inputLabel: 'Your name: ',
@@ -402,6 +416,7 @@ function processInput(e) {
         gameOver = true;
         Swal.fire({
             position: 'center',
+            width: alertWidth,
             icon: 'error',
             title: 'Game Over',
             text: 'The word was: ' + word,
@@ -447,6 +462,7 @@ function update() { // iterate all the letters of the word that the user guessed
         Swal.fire({
             position: 'center',
             icon: 'error',
+            width: alertWidth,
             title: `Sorry, not in word list!`,
             showConfirmButton: false,
             timer: 2500
@@ -500,6 +516,7 @@ function update() { // iterate all the letters of the word that the user guessed
             Swal.fire({
                 position: 'center',
                 icon: 'success',
+                width: alertWidth,
                 title: 'You Won!',
                 showConfirmButton: true,
                 confirmButtonText: 'Play Again',
