@@ -32,7 +32,7 @@ li {
 }
 
 .header {
-    width: 32rem;
+    max-width: 32rem;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 0.5fr 0.5fr 2fr 0.5fr 0.5fr;
@@ -73,7 +73,6 @@ div.header-menu-item {
     display: grid;
     /* Box */
     border: 2px solid #c8d6e5;
-    width: 3.8rem;
     height: 3.8rem;
     margin: 2.5px;
 
@@ -104,46 +103,33 @@ div.header-menu-item {
     border-color: #222f3e;
 }
 
-/* Create keyboard style */
-.keyboard-row {
-    width: 25rem;
+/* Style Keyboard */
+#keyboard-container {
+    display: grid;
     margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.keyboard-row {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    margin: 0 auto;
+    max-width: 30rem;
 }
 
 .key-tile {
-    /* Tile Box */
-    width: 2.25rem;
-    height: 2.5rem;
-    margin: 1px;
     border: 1px solid #c8d6e5;
+    margin: 1px;
+    height: 2rem;
     border-radius: 4px;
-
-    /* Text */
     font-size: 1.3rem;
     font-weight: bold;
     color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-.enter-key-tile {
-    /* Enter Box */
-    width: 4.75rem;
-    height: 2.5rem;
-    margin: 1px;
-    border: 1px solid #c8d6e5;
-    border-radius: 4px;
-
-    /* Text */
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#enter-key-tile {
+    grid-column-start: 1;
+    grid-column-end: 3;
 }
 
 img#correct-letter {
@@ -201,10 +187,8 @@ div#keyboard-container {
     color: #fff;
 }
 
-/* For medium screen sizes from 950px (59.4rem) wide and down */
-@media screen and (max-width: 59.4rem) {
-    body {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(20rem), 1fr);
+@media screen and (min-width: 30rem) {
+    .keyboard-row {
+        margin: 0 auto;
     }
 }

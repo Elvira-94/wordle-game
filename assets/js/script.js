@@ -5,7 +5,7 @@ import {
 } from "./possible-words.js";
 
 const minSupportedScreenWidth = 320;
-const mobileScreenWidthThreshold = 800;
+const mobileScreenWidthThreshold = 950;
 const maxGuesses = 10;
 const minGuesses = 1;
 const maxWordLength = 7;
@@ -20,7 +20,7 @@ let current_user = '';
 let alertWidth = "";
 
 if (window.innerWidth < mobileScreenWidthThreshold) {
-    alertWidth = "80%";
+    alertWidth = "90%";
 } else {
     alertWidth = "30%";
 }
@@ -217,6 +217,7 @@ function showSettings() {
 function chooseRandomWord() {
     let chosenWord = wordList[wordLength][Math.floor(Math.random() * wordList[wordLength].length)].toUpperCase();
     console.log(chosenWord);
+
     return chosenWord;
 }
 
@@ -250,6 +251,22 @@ function clearGrid() {
     }
 }
 
+function calculateTileSize(remSize = 16, maxKeyboardWidthRem = 30, numLettersPerRow = 10, letterMargin = 2.5, letterBorder = 1, bodyBorder = 8) {
+
+
+    let totalMargin = ((letterMargin * numLettersPerRow) + letterMargin) + ((letterBorder * numLettersPerRow) + letterBorder) + (bodyBorder * 2);
+    let windowSize = window.innerWidth;
+    let maxKeyboardWidth = maxKeyboardWidthRem * remSize;
+
+    if (windowSize > maxKeyboardWidth) {
+        windowSize = maxKeyboardWidth;
+    }
+
+    let tileSize = (windowSize - totalMargin) / numLettersPerRow;
+
+    return Math.floor(tileSize)
+}
+
 function drawKeyboard() {
     let keyboard = [
         ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
@@ -258,14 +275,17 @@ function drawKeyboard() {
     ];
     let keyboardContainer = document.createElement('div');
     keyboardContainer.id = 'keyboard-container';
+
     for (let i = 0; i < keyboard.length; i++) {
         let currRow = keyboard[i];
         let keyboardRow = document.createElement('div');
         keyboardRow.classList.add('keyboard-row');
+
         for (let j = 0; j < currRow.length; j++) {
             let keyTile = document.createElement('div');
             let key = currRow[j];
             keyTile.innerText = key;
+
             if (key == 'Enter') {
                 keyTile.id = 'Enter';
             } else if (key == '⌫') {
@@ -273,12 +293,20 @@ function drawKeyboard() {
             } else if ('A' <= key && key <= 'Z') {
                 keyTile.id = 'Key' + key; // 'Key' + 'A'
             }
+
             keyTile.addEventListener('click', processKey);
+
             if (key == 'Enter') {
-                keyTile.classList.add('enter-key-tile');
+                keyTile.id = 'enter-key-tile';
+                keyTile.classList.add('key-tile');
+                keyTile.style.width = (calculateTileSize() * 2) + "px";
             } else {
                 keyTile.classList.add('key-tile');
+                keyTile.style.width = calculateTileSize() + "px";
             }
+
+
+
             keyboardRow.appendChild(keyTile);
         }
         keyboardContainer.appendChild(keyboardRow);
@@ -534,17 +562,17 @@ function update() { // iterate all the letters of the word that the user guessed
         let letter = currTile.innerText;
 
         if (!currTile.classList.contains('correct')) {
-
-            if (word.includes(letter) && letterCount[letter] > 0) {
-                currTile.classList.add('inWord');
-                let keyTile = document.getElementById('Key' + letter);
-
-                if (!keyTile.classList.contains('correct')) {
+            if (word.includes(letter)) {
+                if (letterCount[letter] > 0) {
+                    currTile.classList.add('inWord');
+                    let keyTile = document.getElementById('Key' + letter);
                     keyTile.classList.add('inWord');
+                } else {
+                    currTile.classList.add('notInWord');
                 }
+
                 letterCount[letter] -= 1;
-            } // The letter is not in the word
-            else {
+            } else {
                 currTile.classList.add('notInWord');
                 let keyTile = document.getElementById('Key' + letter);
                 keyTile.classList.add('notInWord');
