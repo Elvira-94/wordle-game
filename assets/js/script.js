@@ -9,9 +9,13 @@ const mobileScreenWidthThreshold = 950;
 const maxGuesses = 10;
 const minGuesses = 1;
 const maxWordLength = 7;
-const minWordLength = 3;
-let guessCount = 6;
-let wordLength = 5;
+
+// Choose a random config for wordLength and guessCount (within upper and lower bounds) to start the game with
+let guessCount = Math.floor(Math.random() * (maxGuesses - minGuesses) + minGuesses);
+let wordLength = Math.floor(Math.random() * (maxWordLength - minWordLength) + minWordLength);
+let root = document.documentElement;
+root.style.setProperty('--letterCount', wordLength);
+
 let row = 0;
 let col = 0;
 let gameOver = false;
