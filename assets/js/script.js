@@ -4,7 +4,7 @@ import {
     wordList
 } from "./possible-words.js";
 
-const minSupportedScreenWidth = 320;
+const minSupportedScreenWidth = 280;
 const mobileScreenWidthThreshold = 950;
 const maxGuesses = 10;
 const minGuesses = 1;
@@ -232,13 +232,33 @@ function clearGame() {
 }
 
 function drawGrid() {
+    let board = document.getElementById('board');
+    let header = document.getElementsByClassName('header')[0];
+    board.style["width"] = header.offsetWidth;
+
+    let tileSize = calculateTileSize({
+        maxItemWidthRem: header.offsetWidth / 16,
+        numItemsPerRow: wordLength,
+        itemMargin: 0,
+        itemBorder: 2
+    });
+
+    let fontSize = tileSize * 0.6;
+
     for (let row = 0; row < guessCount; row++) {
         for (let col = 0; col < wordLength; col++) {
             let tile = document.createElement('span');
             tile.id = row.toString() + "-" + col.toString();
             tile.classList.add('tile');
             tile.innerText = '';
-            document.getElementById('board').appendChild(tile);
+
+            tile.style["height"] = tileSize + "px";
+
+            tile.style["width"] = tileSize + "px";
+
+            tile.style["font-size"] = fontSize + "px";
+
+            board.appendChild(tile);
         }
     }
 }
@@ -251,20 +271,30 @@ function clearGrid() {
     }
 }
 
-function calculateTileSize(remSize = 16, maxKeyboardWidthRem = 30, numLettersPerRow = 10, letterMargin = 2.5, letterBorder = 1, bodyBorder = 8) {
+function calculateTileSize({
+    remSize = 16,
+    maxItemWidthRem = 30,
+    numItemsPerRow = 10,
+    itemMargin = 2.5,
+    itemBorder = 1,
+    bodyBorder = 8
+} = {}) {
 
-
-    let totalMargin = ((letterMargin * numLettersPerRow) + letterMargin) + ((letterBorder * numLettersPerRow) + letterBorder) + (bodyBorder * 2);
+    let maxItemSize = 4 * remSize;
+    let totalMargin = ((itemMargin * numItemsPerRow) + itemMargin) + ((itemBorder * numItemsPerRow) + itemBorder) + (bodyBorder * 2);
     let windowSize = window.innerWidth;
-    let maxKeyboardWidth = maxKeyboardWidthRem * remSize;
+    let maxContainerWidth = maxItemWidthRem * remSize;
 
-    if (windowSize > maxKeyboardWidth) {
-        windowSize = maxKeyboardWidth;
+    if (windowSize > maxContainerWidth) {
+        windowSize = maxContainerWidth;
     }
 
-    let tileSize = (windowSize - totalMargin) / numLettersPerRow;
-
-    return Math.floor(tileSize)
+    let tileSize = (windowSize - totalMargin) / numItemsPerRow;
+    if (tileSize > maxItemSize) {
+        return maxItemSize;
+    } else {
+        return Math.floor(tileSize)
+    }
 }
 
 function drawKeyboard() {
@@ -275,6 +305,9 @@ function drawKeyboard() {
     ];
     let keyboardContainer = document.createElement('div');
     keyboardContainer.id = 'keyboard-container';
+
+    let tileSize = calculateTileSize();
+    let fontSize = tileSize * 0.6;
 
     for (let i = 0; i < keyboard.length; i++) {
         let currRow = keyboard[i];
@@ -297,15 +330,14 @@ function drawKeyboard() {
             keyTile.addEventListener('click', processKey);
 
             if (key == 'Enter') {
-                keyTile.id = 'enter-key-tile';
                 keyTile.classList.add('key-tile');
-                keyTile.style.width = (calculateTileSize() * 2) + "px";
+                keyTile.style.width = (tileSize * 2) + "px";
             } else {
                 keyTile.classList.add('key-tile');
-                keyTile.style.width = calculateTileSize() + "px";
+                keyTile.style.width = tileSize + "px";
             }
 
-
+            keyTile.style['font-size'] = fontSize + "px";
 
             keyboardRow.appendChild(keyTile);
         }

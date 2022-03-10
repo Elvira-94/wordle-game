@@ -57,28 +57,30 @@ div.header-menu-item {
     color: #fff;
 }
 
+.board-container {
+    max-width: 30rem;
+    margin: 0 auto;
+    display: grid;
+}
+
 #board {
     /* 
         Dnamically adjust width of the board based on the number of letters for the chosen word - default 5
         Each tile is 3.8 rem, and 10px account for tile margins
     */
-    width: calc((3.8rem + 10px) * var(--letterCount));
     margin: 0 auto;
     margin-top: 3px;
     display: grid;
     grid-template-columns: repeat(var(--letterCount), 1fr);
+    justify-content: center;
 }
 
 .tile {
     display: grid;
     /* Box */
     border: 2px solid #c8d6e5;
-    height: 3.8rem;
-    margin: 2.5px;
-
     /* Text */
     color: #fff;
-    font-size: 2.3rem;
     font-weight: bold;
     justify-content: center;
     align-items: center;
@@ -127,7 +129,7 @@ div.header-menu-item {
     color: #fff;
 }
 
-#enter-key-tile {
+#Enter {
     grid-column-start: 1;
     grid-column-end: 3;
 }
