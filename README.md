@@ -69,15 +69,36 @@ For this site, the main font that was used is a standard 'Arial' which defaults 
 
 # Features
 
-## Navigation
+## Header Section
+The header section contains the following:
 
-## Home Screen
+**Title:**
+The title  aims to inform the user about the nature of the game from the start. An an anchor tag was created here so that the the player could also refresh the game. The question icon to the left of the title brings the player to the game intructions. Then the poll icon on the right of the title and the cog item takes the user to their game stats and settings of the game.
+<p align="center"><img src="docs/images/header.png" width="50%" height="50%" alt="Header Elements"></p></details><br />
 
-## Settings Screen
+**Game Instructions (Sweet Alert):**
+The game instructions serves as a pop-up to welcome the user to the game from the very beginning. It is styled as a question mark icon on the left side of the title which when pressed will allow the user to access the game instructions. The Sweet Alert was used instead of CSS classes to provide a better experience for the user.
+<p align="center"><img src="docs/images/game-instructions.png" width="50%" height="50%" alt="Game Instructions"></p></details><br />
 
-## How to Play Screen
+**Game Stats (Sweet Alert):**
+The poll icon when clicked presents the user with a Sweet Alert pop up to give the user access to their game stats.
+<p align="center"><img src="docs/images/game-stats.png" width="50%" height="50%" alt="Game Stats"></p></details><br />
+
+**Game Settings (Sweet Alert):**
+The cog icon when clicked presents the user with a Sweet Alert pop up which allows the user to easily configure their games settings. Select the word length (maximum of 7 letters) or number of guesses (maximum of 10 guesses).
+<p align="center"><img src="docs/images/settings.png" width="50%" height="50%" alt="Game Settings"></p></details><br />
+
+## User Name Input Screen
+
+The "Who's Playing?" Sweet Alert pop up prompts the user to input their name after clicking "Play" on the initial game instructions pop up. If we have previously had a user play the game, we prepopulate the input with the last user's name.
+ <p align="center"><img src="docs/images/user-name-input.png" width="50%" height="50%" alt="Enter your name to play"></p></details><br />
 
 # Future Features
+
+The future features of this application as the game develops include:
+
+## Global Leader Board
+<!-- TODO -->
 
 # Technologies Used
 * [HTML5](https://en.wikipedia.org/wiki/HTML) - to provide the content and structure for the site.
@@ -114,58 +135,71 @@ For this site, the main font that was used is a standard 'Arial' which defaults 
 
 During the creation of this project, I discovered a number of issues that slowed progress; examples of the major bugs and their remedies are shown below.
 
-### Bug:
+#### Bug:
 When inputting the letters in the column, it initially stopped working after implementing a query selector to get the id of the letters. Chrome Dev Tools gave off the following warning: Uncaught DOMException: Failed to execute 'querySelector' on 'Document': '0-0' is not a valid selector.
 
-### Fix:
+#### Fix:
 To fix this, I decided to change the query selector to get element by ID which targetted the id instead.
 
-### Result:
+#### Result:
 This fixed the issue and the letters could be inputted and seen clearly in the columns without issue.
 
-### Bug:
+***
+
+#### Bug:
 When you typed 5 'Q's, you could see that you got 5 hints but the word is 'QUEEN' where there is only one 'Q' in the word so only the green hint should show up.
 
-### Fix:
+#### Fix:
 <!-- TODO -->
 
-### Result: 
+#### Result: 
 <!-- TODO -->
-### Bug:
+
+***
+
+#### Bug:
 You could make a guess with two letters for example.
 
-### Fix:
+#### Fix:
 To fix this, I need to add a check to see if all 5 letters were entered before calling the update function.
 
-### Result:
+#### Result:
 'If col == width" fixed this issue so you could only make a guess when all 5 letters were entered by the user.
 
-### Bug:
+***
+
+#### Bug:
 If you entered an invalid word the game still processed it.
 
-### Fix:
+#### Fix:
 To fix his, I added a return statement to check if the guess the user inputs is a valid word inside the update function. 
 
-### Result:
+#### Result:
 If you entered an invalid word the game now did not move you along the next guess and wouldn't give you any hints so the user could go back and change their guess.
 
-### Bug:
+***
+
+#### Bug:
 When you hit enter to get rid of the pop-up, it would submit the user's guess again causing the pop-up to keep popping up.
 
-### Fix:
+#### Fix:
 <!-- TODO -->
 
-### Result:
+#### Result:
 Now if you enter a word such as 'APPLE' when you hit enter, the pop-up now goes away.
 
-### Bug:
+***
+
+#### Bug:
 When you clicked the instructions button, the button would be focused when the user continues to play the game.
 
-### Fix:
+#### Fix:
 This was fixed by unfocusing the button using .blur() after the alert is closed.
 
-### Result:
+#### Result:
 Now when the user hits enter, the button is pressed again rather than the guess being submitted.
+
+***
 
 
 
@@ -215,7 +249,8 @@ Further reading and troubleshooting on cloning a repository from GitHub can be f
 # Credits 
 
 ## Content
-
+* [Wordle](https://twitter.com/powerlanguish) - to take inspiration from Wordle which is a game created by Josh Wardle (Twitter: @powerlanguish).
+* [New York Times Wordle](https://www.nytimes.com/games/wordle/index.html) - to take inspiration from the New York Times version of Wordle.
 * [W3Schools](https://www.w3schools.com/) - to help learn and understand vital coding concepts used to help build this site.
 * [Youtube Wordle Tutorial (Part 1)](https://youtu.be/ckjRsPaWHX8) - to help build a HTML/CSS/Javascript Wordle game following instructions by Kenny Yip Coding.
 * [Youtube Wordle Tutorial (Part 2)](https://youtu.be/MM9FAV_CEkU) - to help build a HTML/CSS/Javascript Wordle game following instructions by Kenny Yip Coding.
@@ -223,12 +258,21 @@ Further reading and troubleshooting on cloning a repository from GitHub can be f
 * [Word Game Helper](https://www.wordgamehelper.com/) - to extract 3-7 letter word lists for the site.
 * [Wordle](https://www.nytimes.com/games/wordle/index.html) - to extract 5-letter words & guesses for the site.
 * [CSS Tricks](https://css-tricks.com/updating-a-css-variable-with-javascript/) - to dynamically update the width of the board so that the grid allows the appropriate number of tiles.
-* [Free Code Camp Tutorial](https://www.freecodecamp.org/news/build-a-wordle-clone-in-javascript/) - to better understand how to implement animate.css to site and to creat import word lists to js script following instructions by Paul Akinyemi.
+* [Free Code Camp Tutorial](https://www.freecodecamp.org/news/build-a-wordle-clone-in-javascript/) - to better understand how to implement animate.css to site and to create import word lists to js script following instructions by Paul Akinyemi.
 * [Digital Ocean Tutorial](https://www.digitalocean.com/community/tutorials/for-loops-for-of-loops-and-for-in-loops-in-javascript) - to better understand how to implement for loops to site code following instructions by Tania Rascia.
-* [Stack Overflow](https://stackoverflow.com/questions/2010892/how-to-store-objects-in-html5-localstorage) - to implement storing JSON objects in local storage for keeping track of user stats.
+* [Stack Overflow Local Storage](https://stackoverflow.com/questions/2010892/how-to-store-objects-in-html5-localstorage) - to implement storing JSON objects in local storage for keeping track of user stats.
 * [Article by Borislav Hadzhiev](https://bobbyhadz.com/blog/javascript-unexpected-reserved-word-await) - to help resolve unexpected reserved word 'await' Error in code.
 * [W3Schools Javascript Async/Await](https://www.w3schools.com/js/tryit.asp?filename=tryjs_async2) - to help solidify learning async and await functions to make promises easier to write in code.
 * [W3Schools Javascript Promises](https://www.w3schools.com/js/js_promise.asp) - to help solidify learning Javascript promises.
+* [W3Schools Javascript HTML DOM CSS](https://www.w3schools.com/js/js_htmldom_css.asp) - to help change the style of elements using HTML DOM.
+* [Stack Overflow Progress Bar](https://stackoverflow.com/questions/41429906/how-to-display-data-label-inside-html5-progress-bar-cross-browser) - to help style and display the game stats progress bar to the site.
+* [Web Devs Planet Font Awesome Icon](https://www.webdevsplanet.com/post/fontawesome-icons-not-showing#:~:text=Make%20sure%20that%20the%20Font,U%20while%20on%20the%20page.) - to help solve why the font awesome icons were not showing up on site following instructions by John Mwaniki.
+
+
+
+
+
+
 
 
 
