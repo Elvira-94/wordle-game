@@ -3,7 +3,9 @@
 <p align="center"><a href="https://elvira-94.github.io/wordle-game/" target="_blank" rel="noopener"><img src="docs/images/responsiveness.png" width="80%" height="80%" alt="Wordle++ Am I responsive screenshot. Once clicked, opens the Wordle++ homepage."></a></p>
 
 
-**Wordle++** is based on the popular New York Times online 5-letter word game. Wordle is a game of guessing words. Every day, you must guess a new word. You have six attempts, and each one provides some hints.
+**Wordle++** is based on the popular [New York Times](https://www.nytimes.com/games/wordle/index.html) online 5-letter word game. Wordle is a game of guessing words. Every day, you must guess a new word. You have six attempts, and each one provides some hints.
+
+As my partner and my Mam both love playing this game, the game's target audience intends to be for anyone who loves a bit of fun at playing word mystery games.
 
 However, Wordle++ was created with customisation in mind as the user can easily change their mystery word count and even add more guesses! This gives the user a more fun and challenging way to play the game. How about guessing a mystery 3-letter word in 10 tries? It's harder than you'd think.  
 
@@ -11,15 +13,15 @@ You can view the live site here - <a href="https://elvira-94.github.io/wordle-ga
 
 # User Experience (UX)
 
-## Site Aims
+## Target Audience
 
-* To provide the user with an online word game to guess a random 3 to 7 letter word in 6 to 10 tries.
+* Fans of the Wordle game originally created by Josh Wardle.
 
-* To create a word game that encourages the user to reset the game and customise their guesses and word lengths.
+* Adults, teens and children who want to take a chance at guessing the correct word in a limited number of tries.
 
-* To provide a game that is fully responsive so the user can play across multiple devices.
+* People who want to test their knowledge of random words in a fun and relaxing way.
 
-* To provide a feel-good experience by allowing the user to navigate the site easily.
+* People who like to challenge themselves where they can customize their word lengths and guess attempts to provide a more concetrated difficult task.
 
 ## User Stories
 
@@ -37,11 +39,21 @@ The **user** is any person who likes to play word guessing games and would like 
 | 8 | USER | As a user, I want to be able to start a new random Wordle++ when the current one ends | So I can see if I can beat my score |
 | 9 | USER | As a user, when I play Wordle++ I want to be able to customize the amount of guesses or letters in the word (e.g guess a 3-letter word in 4 tries) | So the game can be as challenging as possible |
 
+## Site Aims
+
+* To provide the user with an online word game to guess a random 3 to 7 letter word in 6 to 10 tries.
+
+* To create a word game that encourages the user to reset the game and customise their guesses and word lengths.
+
+* To provide a game that is fully responsive so the user can play across multiple devices.
+
+* To provide a feel-good experience by allowing the user to navigate the site easily.
+
 ## Design Choices
 
 ### Colour Scheme
 
-After reviewing several color schemes with potential users of the site, I settled on the following Canadian Palette by Dmitri Litvinov, which allows for a lively color palette with acceptable contrast ratios.
+After reviewing several color schemes with potential users of the site, I settled on the following Canadian Palette by [Dmitri Litvinov](https://flatuicolors.com/palette/ca), which allows for a lively color palette with acceptable contrast ratios.
 
 * Background color: #222f3e
 * Tile Color Hints: #1dd1a1 (Correct Letter), #feca57 (Letter In Word), #576574 (Letter Not In Word)
@@ -93,6 +105,18 @@ The poll icon when clicked presents the user with a Sweet Alert pop-up to give t
 The cog icon when clicked presents the user with a Sweet Alert pop-up which allows the user to easily configure their games settings. The user can select the word length (minimum of 3 letters, maximum of 7 letters) and number of guesses (minimum of 1 guess, maximum of 10 guesses).
 <p align="center"><img src="docs/images/settings.png" width="50%" height="50%" alt="Game Settings"></p></details><br />
 
+**Game Board:**
+The purpose of the game board is to provide a grid of tiles where the user's guesses will appear. Each tile will represent a letter and each row will represent a word/guess. When the user enters a word, and submits their guess, tiles will change colour to indicate whether the letter is correct (green color), incorrect (grey color), or correct in the wrong position (yellow color).
+
+The size of the game board scales dynamically based on the user's screen size and tile size also takes into consideration the word length configuration that the user specified. Please see pictures below for reference.
+<p align="center"><img src="docs/images/game-board-with-input.png" width="50%" height="50%" alt="Game board with input"></p></details><br />
+
+<p align="center"><img src="docs/images/game-board.png" width="50%" height="50%" alt="Game board that is dynamically responsive to user's screen"></p></details><br />
+
+**Keyboard:**
+The keyboard provides the user with a way to visually see what characters they've guessed and the results of those guesses. Once the user makes a guess, the corresponding tile to the letters guessed will change color based on the result of the guess similiarly to the colors of the tiles of the game board.
+<p align="center"><img src="docs/images/keyboard-with-input.png" width="50%" height="50%" alt="Keyboard that is dynamically responsive to user's screen size"></p></details><br />
+
 ## User Name Input Screen
 
 The "Who's Playing?" Sweet Alert pop-up prompts the user to input their name after clicking "Play" on the initial game instructions pop-up. If we have previously had a user play the game, we prepopulate the input with the last user's name.
@@ -119,7 +143,6 @@ Wordle 265 6/6
 
 I would like to add this functionality to Wordle++ in the future. 
 
-
 # Technologies Used
 * [HTML5](https://en.wikipedia.org/wiki/HTML) - to provide the content and structure for the site.
 * [CSS3](https://en.wikipedia.org/wiki/CSS) - to provide the styling for the site.
@@ -139,8 +162,6 @@ I would like to add this functionality to Wordle++ in the future.
 * [Google Chrome DevTools](https://developer.chrome.com/docs/devtools/) - to debug and test responsiveness of the site.
 * [VS Code](https://code.visualstudio.com/) - to test the local development of the site.
 * [Am I Responsive](http://ami.responsivedesign.is/#) - to test the responsiveness of the site on multiple devices.
-
-
 
 # Testing
 
@@ -186,7 +207,7 @@ I would like to add this functionality to Wordle++ in the future.
 
 ## Accessibility Testing
 
-* Running the color contrast report showed me that I had a light font (#fff) on top of a light background when tiles change to yellor or green colors depending on the accuracy of the user's guess. This allowed me to re-evaluate my font color choice and to use a dark font against these background, which significantly improved report results.
+* Running the color contrast report showed me that I had a light font (#fff) on top of a light background when tiles change to yellow or green colors depending on the accuracy of the user's guess. This allowed me to re-evaluate my font color choice and to use a dark font against these backgrounds, which significantly improved report results.
 
     ### Initital Contrast Report
 
@@ -356,6 +377,7 @@ If 'HIKER' is the word, and you enter 'QUEEN', the 'E' character on the keyboard
 #### Bug
 When a user enters a setting value that is outside the range of allowed values, the site prompts the user to enter a valid value. However, it does not show the user what the correct range of values is. In order to see the correct range of values, the user needs to go back to the how to play alert. This can result in a negative user experience, and I would like to address this with more time. 
 
+***
 
 # Deployment
 
@@ -424,9 +446,9 @@ Further reading and troubleshooting on cloning a repository from GitHub can be f
 * [Stack Overflow Root Color Variables](https://stackoverflow.com/questions/37801882/how-to-change-css-root-color-variables-in-javascript) - to get solution to help change styling of root color variables in code.
 * [Stack Overflow Calling Header without Jquery](https://stackoverflow.com/questions/60061172/how-to-get-header-tag-without-using-jquery) - to get solution to help call header element on page.
 * [Stack Overflow Jhint error](https://stackoverflow.com/questions/1963102/what-does-the-jslint-error-body-of-a-for-in-should-be-wrapped-in-an-if-statemen) - to help fix jshint error in code.
-* [Javascript Tutorial Website](https://www.javascripttutorial.net/javascript-dom/javascript-width-height/) - to help get width and heights of elements in codde.
+* [Javascript Tutorial Website](https://www.javascripttutorial.net/javascript-dom/javascript-width-height/) - to help get width and heights of elements in code.
 * [Mastering JS Tutorial](https://masteringjs.io/tutorials/fundamentals/parameters) - to help understand parameter naming in javascript code.
 
 # Acknowledgements
 
-The Wordle++ game was built as part of my Portfolio Project 2 (Javascript) on behalf of a Full Stack Software Developer Diploma at the Code Institute. I'd like to thank the inspiration for this website from my mentor [Richard Wells](https://www.linkedin.com/in/richard-wells-fullstack/), my partner [Dan](https://www.linkedin.com/in/danielredmond1/), and co-cohort facilitator [Kasia Bogucka](https://www.linkedin.com/in/kasbogucka/), as well as the Slack community and everyone at the Code Institute for their help and loving support. Creating Wordle++ has taught me a lot, and I'm now much more confident in my abilities when it comes to planning, building, testing, and deploying a fully working site based on Javascript.
+The Wordle++ game was built as part of my Portfolio Project 2 (Javascript) on behalf of a Full Stack Software Developer Diploma at the Code Institute. I'd like to thank the inspiration for this website from my mentor [Richard Wells](https://www.linkedin.com/in/richard-wells-fullstack/), my partner [Dan](https://www.linkedin.com/in/danielredmond1/), and my dear Mother, as well as the Slack community and everyone at the Code Institute for their help and loving support. Creating Wordle++ has taught me a lot, and I'm now much more confident in my abilities when it comes to planning, building, testing, and deploying a fully working site based on Javascript.
