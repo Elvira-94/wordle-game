@@ -165,6 +165,11 @@ function incrementStats(user, guessNum) {
     localStorage.setItem(user, JSON.stringify(userStats));
 }
 
+/**
+ * 
+ *  Displays an alert that allows the user to configure their game. 
+ * 
+ */
 function showSettings() {
     // SweetAlert2 Multiple Inputs not suported so this is their recommended method:
     // https://sweetalert2.github.io/#input-types
@@ -216,21 +221,34 @@ function showSettings() {
     })();
 }
 
+/**
+ * 
+ * @returns Choose a random word from the pre-populated wordList and return it to the caller
+ */
 function chooseRandomWord() {
     let chosenWord = wordList[wordLength][Math.floor(Math.random() * wordList[wordLength].length)].toUpperCase();
     return chosenWord;
 }
 
+/**
+ * Draws the game resources
+ */
 function drawGame() {
     drawGrid();
     drawKeyboard();
 }
 
+/**
+ * Clears the game resources
+ */
 function clearGame() {
     clearGrid();
     clearKeyboard();
 }
 
+/**
+ * Draws the board grid based on the game configurations specified by the user
+ */
 function drawGrid() {
     let board = document.getElementById('board');
     let header = document.getElementsByTagName('header')[0];
@@ -263,6 +281,9 @@ function drawGrid() {
     }
 }
 
+/**
+ * Removes the game board elements so that a new board can be redrawn
+ */
 function clearGrid() {
     // Remove grid boxes from grid one by one 
     let board = document.getElementById('board');
@@ -271,6 +292,13 @@ function clearGrid() {
     }
 }
 
+/**
+ * Based on sizing input provided, will determine the optimal tile size in order to have all necessesary tiles fit on the users screen.
+ * If the size of the tile exceeds a certain size, then the tile be capped at the max size
+ * 
+ * @param {*} param
+ * @returns number 
+ */
 function calculateTileSize({
     remSize = 16,
     maxItemWidthRem = 30,
@@ -297,6 +325,9 @@ function calculateTileSize({
     }
 }
 
+/**
+ * Draws the grid for the the keyoard on the screen scaled according to the users screensize.
+ */
 function drawKeyboard() {
     let keyboard = [
         ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
@@ -346,12 +377,17 @@ function drawKeyboard() {
     document.body.appendChild(keyboardContainer);
 }
 
+/**
+ * Clears the keyboard elements from the page so that a new keyboard can be drawn
+ */
 function clearKeyboard() {
     let keyboard = document.getElementById('keyboard-container');
     keyboard.remove();
 }
 
-// Resets current row and column to 0 and re-initialised game
+/** 
+ * Resets current row and column to 0, gameOver to false and re-initialises game for replay
+ */
 function resetGame() {
     col = 0;
     row = 0;
@@ -400,6 +436,11 @@ window.onload = function () {
     initialize(true);
 };
 
+/**
+ *  Initialises game resources, listeners, and starts the game
+ * 
+ * @param {boolean} firstLoad - Whether it is the first time the page has been loaded after a refresh or not. 
+ */
 async function initialize(firstLoad) {
 
     if (!firstLoad) {
@@ -431,6 +472,10 @@ async function initialize(firstLoad) {
     }
 }
 
+/**
+ * When a key is clicked on the keyboard element on the page, this function registers the key 
+ * with a code and passes it to the function that handles key presses
+ */
 function processKey() {
     let e = {
         'code': this.id
@@ -438,6 +483,13 @@ function processKey() {
     processInput(e);
 }
 
+/**
+ * Checkes key presses and adds letters if alphabet letters were pressed, removes letters if backspace was pressed, and submits a guess
+ * if enter is pressed (and all letters are entered) 
+ * 
+ * @param {*} e - an object representing the key pressed
+ * @returns 
+ */
 function processInput(e) {
     // Check to see if user pressed an alphabet key letter within dictionary order
     if ('KeyA' <= e.code && e.code <= 'KeyZ') {
@@ -489,7 +541,14 @@ function processInput(e) {
         return;
     }
 }
-
+/**
+ * Handles animations using animate.css library
+ *
+ * @param {*} element 
+ * @param {*} animation 
+ * @param {*} prefix 
+ * @returns 
+ */
 const animateCSS = (element, animation, prefix = 'animate__') =>
     // We create a Promise and return it
     new Promise((resolve, reject) => {
@@ -509,8 +568,21 @@ const animateCSS = (element, animation, prefix = 'animate__') =>
         });
     });
 
-function update() { // iterate all the letters of the word that the user guessed
-    //string up the guess word
+
+/**
+ * Called when a guess is submitted. 
+ * Checks the guess by iterating through each lette of the word, and determining
+ * if the letter is:
+ * 1. incorrect
+ * 2. correct, in the wrong postion
+ * 3. correct, in the correct position
+ * 
+ * If the guess is fully correct, it will inform the user of their success and start the game again
+ * 
+ * @returns 
+ */
+function update() {
+
     let guess = '';
     for (let c = 0; c < wordLength; c++) {
         let currTile = document.getElementById(row.toString() + '-' + c.toString());
