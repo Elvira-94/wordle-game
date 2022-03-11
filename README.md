@@ -1,6 +1,6 @@
 # **Wordle++ - Project Portfolio 2 - Javascript**
 
-<p align="center"><a href="https://elvira-94.github.io/wordle-game/" target="_blank" rel="noopener"><img src="docs/images/Responsiveness.png" width="80%" height="80%" alt="Wordle++ Am I responsive screenshot. Once clicked, opens the Wordle++ homepage."></a></p>
+<p align="center"><a href="https://elvira-94.github.io/wordle-game/" target="_blank" rel="noopener"><img src="docs/images/responsiveness.png" width="80%" height="80%" alt="Wordle++ Am I responsive screenshot. Once clicked, opens the Wordle++ homepage."></a></p>
 
 
 **Wordle++** is based on the popular New York Times online 5-letter word game. Wordle is a game of guessing words. Every day, you must guess a new word. You have six attempts, and each one provides some hints.
@@ -146,27 +146,31 @@ I would like to add this functionality to Wordle++ in the future.
 
 ## Code Validation
 
-* The Wordle++ site has undergone extensive testing both manually and via testing tools. All the code has been validated via the [W3C HTML Validator](https://validator.w3.org/nu/?showsource=yes&doc=https%3A%2F%2Felvira-94.github.io%2Fwordle-game%2F), the [W3C CSS Validator](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Felvira-94.github.io%2Fwordle-game%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en) and the [JSHint Validator](https://jshint.com/). 3 minor errors were found on the index.html when tested on [HTML Validation](https://validator.w3.org/) but were fixed immediately and documented below.<br /><br />
+* The Wordle++ site has undergone extensive testing both manually and via testing tools. All the code has been validated via the [W3C HTML Validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Felvira-94.github.io%2Fwordle-game%2F), the [W3C CSS Validator](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Felvira-94.github.io%2Fwordle-game%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en) and the [JSHint Validator](https://jshint.com/). Initially, 3 minor errors were found on the index.html when tested on [HTML Validation](https://validator.w3.org/) but were fixed immediately and documented below. However after the fix was applied, a repeat check on the HTML Validator indicated a warning to include a h2-h6 heading in the game board section, which was left as is as there was no need to include it for the game board.  <br /><br />
 
     ### HTML Validation Image With Errors
 
-    ![HTML Validation](docs/images/HTMLValidation-Errors.png)
+    ![HTML Validation](docs/images/html-validation-errors.png)
 
     ### HTML Validation Image
 
-    ![HTML Validation](docs/images/HTMLValidation.png)
+    ![HTML Validation](docs/images/html-validation.png)
+
+    ### HTML Validation Image With Warning
+
+    ![HTML Validation](docs/images/html-validation-warning.png)
 
     ### CSS Validation Image
 
-    ![CSS Validation](docs/images/CSSValidation.png)
+    ![CSS Validation](docs/images/css-validation.png)
 
     ### JS Validation Image For script.js
 
-    ![JS Validation](docs/images/JSValidation.png)
+    ![JS Validation](docs/images/js-validation.png)
 
     ### JS Validation Image For possible_guesses.js
 
-    ![JS Validation](docs/images/JSValidation2.png)
+    ![JS Validation](docs/images/js-validation-2.png)
 
 ## Lighthouse Testing
 
@@ -174,11 +178,11 @@ I would like to add this functionality to Wordle++ in the future.
 
     ### Initial Lighthouse report
 
-    ![Lighthouse Report](docs/images/LighthouseReport1.png)
+    ![Lighthouse Report](docs/images/lighthouse-report-1.png)
 
     ### Lighthouse report after moving animate.min.css to bottom of index.html
 
-    ![Lighthouse Report](docs/images/LighthouseReport2.png)
+    ![Lighthouse Report](docs/images/lighthouse-report-2.png)
 
 ## Accessibility Testing
 
@@ -186,19 +190,19 @@ I would like to add this functionality to Wordle++ in the future.
 
     ### Initital Contrast Report
 
-    ![Contrast Report](docs/images/ContrastCheckFail.png)
+    ![Contrast Report](docs/images/contrast-check-fail.png)
 
     ### The site at the time of the initial report
 
-    ![Contrast of Site Initially](docs/images/ContrastCheckInitial.png)
+    ![Contrast of Site Initially](docs/images/contrast-check-initial.png)
 
     ### Improved Contrast Report
 
-    ![Contrast Report](docs/images/ContrastCheck.png)
+    ![Contrast Report](docs/images/contrast-check.png)
 
     ### The site after contrast improvements were made
 
-    ![Contrast of Site Initially](docs/images/ContrastCheckChange.png)
+    ![Contrast of Site After Improvements](docs/images/contrast-check-change.png)
 
 ## Responsiveness Testing
 
@@ -206,7 +210,7 @@ I would like to add this functionality to Wordle++ in the future.
 
     ### The site on multiple devices
 
-    ![Site Responsiveness](docs/images/Responsiveness.png)
+    ![Site Responsiveness](docs/images/responsiveness.png)
 
 ## Functionality Testing
 
@@ -226,44 +230,44 @@ I would like to add this functionality to Wordle++ in the future.
 
     * Are all navigation links working as expected?
         * Task: Click on each navigation link on the site.
-        * Expected Result: An alert will pop up allowing the expected functionality
+        * Expected Result: An alert will pop up allowing the expected functionality.
 
     * Are all elements loading correctly?
         * Task: Look at the elements on the page. Are they positioned correctly? Are they sized correctly?
         * Expected Result: The header, game board, and keyboard are sized/positioned accordingly based on the screen size. 
 
     * Are all click handlers functioning as expected?  
-        * Task: Click on each of the keyboard letters on the screen
-        * Expected Result: The corresponding key will show up in the current letter box on the game board
+        * Task: Click on each of the keyboard letters on the screen.
+        * Expected Result: The corresponding key will show up in the current letter box on the game board.
 
     * Are guesses working as expected?
         * Task: Make a guess. Sometimes make multiple guesses. 
-        * Expected Results: If a character is incorrect, correct in the incorrect position, or absolutely correct, it will be shown accordingly on both the game board and the keyboard
+        * Expected Result: If a character is incorrect, correct in the incorrect position, or absolutely correct, it will be shown accordingly on both the game board and the keyboard.
 
     * Are input limits working as expected?
         * Task: Enter 0 characters and submit. Enter 3 characters and submit. Enter an invalid word.  
-        * Expected Results: You will not be able to submit the guess. If the word is invalid, and alert will inform you. 
+        * Expected Result: You will not be able to submit the guess. If the word is invalid, an alert will inform you. 
 
     * Is the application guess count configurable as expected? 
-        * Task: Update the guess count
-        * Expected Results: The number of rows on the board changes accordingly. You can no only make that number of guesses before game over. 
+        * Task: Update the guess count.
+        * Expected Result: The number of rows on the board changes accordingly. You can now only make that number of guesses before game over. 
 
     * Is the application word length configurable as expected? 
-        * Task: Update the word length
-        * Expected Results: The number of columns on the board changes accordingly. You must guess a word of that length before you can submit the guess. A word of that length will be chosen as the answer. Board tiles will scale accordingly. 
+        * Task: Update the word length.
+        * Expected Result: The number of columns on the board changes accordingly. You must guess a word of that length before you can submit the guess. A word of that length will be chosen as the answer. Board tiles will scale accordingly. 
 
     * Is stat tracking working as expected? 
         * Task: Enter a new user name when starting the game
-        * Expected Results: The user will have empty stats
+        * Expected Result: The user will have empty stats.
 
-        * Task: Submit guesses for X character word length until you win
-        * Expected Results: The stats will show that you guessed correctly 1 time for that guess number 
+        * Task: Submit guesses for X character word length until you win.
+        * Expected Results: The stats will show that you guessed correctly 1 time for that guess number. 
 
-        * Task: Change configuration to be Y charactefr word length 
-        * Expected Results: The stats will be different to reflect the different word length
+        * Task: Change configuration to be Y character word length. 
+        * Expected Result: The stats will be different to reflect the different word length.
 
-        * Task: Refresh the page, and enter a different user name when starting the game
-        * Expected Results: The stats will reflect the different user 
+        * Task: Refresh the page, and enter a different user name when starting the game.
+        * Expected Result: The stats will reflect the different user. 
 
 
 ## Bug Stories
@@ -288,7 +292,7 @@ When you typed 5 'Q's, you could see that you got 5 hints but the word is 'QUEEN
 I added logic to the code to ensure that only the first letter that matches gets the hint, and that subsequent letters are shown accordingly.
 
 #### Result: 
-If the word is QUEEN and you enter QQQQQ, only 1 Q will be shown in green, and the rest will be black. QQQQQ will later not be allowed as it is not a word. 
+If the word is QUEEN and you enter 'QQQQQ', only 1 'Q' will be shown in green, and the rest will be black. 'QQQQQ' will later not be allowed as it is not a word. 
 
 ***
 
@@ -310,7 +314,7 @@ If you entered an invalid word the game still processed it.
 To fix his, I added a return statement to check if the guess the user inputs is a valid word inside the update function. 
 
 #### Result:
-If you entered an invalid word the game now did not move you along the next guess and wouldn't give you any hints so the user could go back and change their guess.
+If you entered an invalid word, the game now did not move you along the next guess and wouldn't give you any hints so the user could go back and change their guess.
 
 ***
 
@@ -337,7 +341,7 @@ Now when the user hits enter, the pop-up closes, and allows the user to keep gue
 #### Bug: 
 If you guess a word that had multiple of the same letter and that letter occurred once in the correct word. The letter would show as incorrect in the keyboard. 
 
-This was because the logic of the game did not consider the use case where a letter was incorrectly guessed but had been previously guessed prior in the same guess
+This was because the logic of the game did not consider the use case where a letter was incorrectly guessed but had been previously guessed prior in the same guess.
 
 #### Fix: 
 This was fixed by adding a condition to check if the letterCount variable > 0 (turn the guess and key tiles green), and if it equals 0 but is still in the word, to turn the guess tile black, but keep the key tile green.
@@ -346,6 +350,12 @@ This was fixed by adding a condition to check if the letterCount variable > 0 (t
 If 'HIKER' is the word, and you enter 'QUEEN', the 'E' character on the keyboard will show green rather than black.
 
 ***
+
+## Unfixed Bugs
+
+#### Bug
+When a user enters a setting value that is outside the range of allowed values, the site prompts the user to enter a valid value. However, it does not show the user what the correct range of values is. In order to see the correct range of values, the user needs to go back to the how to play alert. This can result in a negative user experience, and I would like to address this with more time. 
+
 
 # Deployment
 
@@ -419,4 +429,4 @@ Further reading and troubleshooting on cloning a repository from GitHub can be f
 
 # Acknowledgements
 
-The Wordle++ game was built as part of my Portfolio Project 2 on behalf of a Full Stack Software Developer Diploma at the Code Institute. I'd like to thank the inspiration for this website from my mentor [Richard Wells](https://www.linkedin.com/in/richard-wells-fullstack/), my partner [Dan](https://www.linkedin.com/in/danielredmond1/), and co-cohort facilitator [Kasia Bogucka](https://www.linkedin.com/in/kasbogucka/), as well as the Slack community and everyone at the Code Institute for their help and loving support. Creating Wordle++ has taught me a lot, and I'm now much more confident in my abilities when it comes to planning, building, testing, and deploying a fully working site based in Javascript.
+The Wordle++ game was built as part of my Portfolio Project 2 (Javascript) on behalf of a Full Stack Software Developer Diploma at the Code Institute. I'd like to thank the inspiration for this website from my mentor [Richard Wells](https://www.linkedin.com/in/richard-wells-fullstack/), my partner [Dan](https://www.linkedin.com/in/danielredmond1/), and co-cohort facilitator [Kasia Bogucka](https://www.linkedin.com/in/kasbogucka/), as well as the Slack community and everyone at the Code Institute for their help and loving support. Creating Wordle++ has taught me a lot, and I'm now much more confident in my abilities when it comes to planning, building, testing, and deploying a fully working site based on Javascript.
