@@ -1,10 +1,11 @@
+/* jshint esversion: 8, jquery: true */
+
 // Javascript code below influenced by "Build a Wordle Clone in Javascript HTML CSS" tutorial https://youtu.be/ckjRsPaWHX8
 // And "Build a Wordle Clone in Javascript HTML CSS Part 2" tutorial https://youtu.be/MM9FAV_CEkU
 import {
     wordList
 } from "./possible-words.js";
 
-const minSupportedScreenWidth = 280;
 const mobileScreenWidthThreshold = 950;
 const maxGuesses = 10;
 const minGuesses = 1;
@@ -49,7 +50,6 @@ async function showInstructions() {
             template: '#game-instructions',
             width: alertWidth,
             didClose: (toast) => {
-                console.log('Resolving promise');
                 resolve();
             }
         });
@@ -65,17 +65,16 @@ async function showInstructions() {
  * @param {string} user 
  */
 function populateNewUserStats(user) {
-    let scores = {}
+    let scores = {};
 
     for (let i = 1; i <= maxWordLength; i++) {
-        scores[i] = {}
+        scores[i] = {};
         for (let j = 1; j <= maxGuesses; j++) {
-            scores[i][j] = 0
+            scores[i][j] = 0;
         }
     }
 
     localStorage.setItem(user, JSON.stringify(scores));
-    console.log(localStorage.getItem(user));
 }
 
 /**
@@ -114,14 +113,16 @@ function displayUserStats(user, wordLength) {
     let divContainer = document.createElement('div');
     divContainer.innerText = 'Word Length: ' + wordLength;
 
-    let totalGuesses = 0
-    for (let item in Object.keys(stats)) {
+    let totalGuesses = 0;
+    for (let i = 0; i < length(Object.keys(stats)); i++) {
+        item = Object.keys(stats)[i];
         totalGuesses = totalGuesses + parseInt(stats[parseInt(item) + 1]);
     }
 
-    for (let item in Object.keys(stats)) {
-        let guessNum = parseInt(item) + 1
-        let percentage = Math.ceil((parseInt(stats[guessNum]) / totalGuesses) * 100)
+    for (let i = 0; i < length(Object.keys(stats)); i++) {
+        item = Object.keys(stats)[i];
+        let guessNum = parseInt(item) + 1;
+        let percentage = Math.ceil((parseInt(stats[guessNum]) / totalGuesses) * 100);
         let innerDiv = document.createElement('div');
 
         innerDiv.classList.add('progress');
@@ -170,9 +171,7 @@ function showSettings() {
     // SweetAlert2 Multiple Inputs not suported so this is their recommended method:
     // https://sweetalert2.github.io/#input-types
     (async () => {
-        const {
-            value: formValues
-        } = await Swal.fire({
+        await Swal.fire({
             title: 'Settings',
             html: '<p><label for="guessCount">Guess Count:</label>' +
                 '<input id="guessCount" type="number" min="' + minGuesses + '"max="' + maxGuesses + '" value="' + guessCount + '" class="swal2-input"></p>' +
@@ -221,8 +220,6 @@ function showSettings() {
 
 function chooseRandomWord() {
     let chosenWord = wordList[wordLength][Math.floor(Math.random() * wordList[wordLength].length)].toUpperCase();
-    console.log(chosenWord);
-
     return chosenWord;
 }
 
@@ -239,7 +236,7 @@ function clearGame() {
 function drawGrid() {
     let board = document.getElementById('board');
     let header = document.getElementsByClassName('header')[0];
-    board.style["width"] = header.offsetWidth;
+    board.style.width = header.offsetWidth;
 
     let tileSize = calculateTileSize({
         maxItemWidthRem: header.offsetWidth / 16,
@@ -257,9 +254,9 @@ function drawGrid() {
             tile.classList.add('tile');
             tile.innerText = '';
 
-            tile.style["height"] = tileSize + "px";
+            tile.style.height = tileSize + "px";
 
-            tile.style["width"] = tileSize + "px";
+            tile.style.width = tileSize + "px";
 
             tile.style["font-size"] = fontSize + "px";
 
@@ -298,7 +295,7 @@ function calculateTileSize({
     if (tileSize > maxItemSize) {
         return maxItemSize;
     } else {
-        return Math.floor(tileSize)
+        return Math.floor(tileSize);
     }
 }
 
@@ -390,7 +387,7 @@ async function getPlayingUser() {
         confirmButtonText: 'Submit',
         inputValidator: (value) => {
             if (!value) {
-                return 'Please enter a name!'
+                return 'Please enter a name!';
             }
         }
     });
@@ -408,7 +405,7 @@ window.onload = function () {
 async function initialize(firstLoad) {
 
     if (!firstLoad) {
-        clearGame()
+        clearGame();
     }
 
     word = chooseRandomWord();
@@ -419,7 +416,7 @@ async function initialize(firstLoad) {
             await getPlayingUser(); // We want to ask the user for their name on first opening of the site, after the welcome/instructions alert
         });
 
-        getUserStats(current_user)
+        getUserStats(current_user);
         document.addEventListener('keyup', (e) => {
             processInput(e);
         });
