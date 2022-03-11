@@ -1,5 +1,3 @@
-/* jshint esversion: 8, jquery: true */
-
 // Javascript code below influenced by "Build a Wordle Clone in Javascript HTML CSS" tutorial https://youtu.be/ckjRsPaWHX8
 // And "Build a Wordle Clone in Javascript HTML CSS Part 2" tutorial https://youtu.be/MM9FAV_CEkU
 import {
