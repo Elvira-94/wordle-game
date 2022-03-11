@@ -60,6 +60,7 @@ div.header-menu-item {
 .board-container {
     max-width: 30rem;
     margin: 0 auto;
+    margin-top: 1rem;
     display: grid;
 }
 
