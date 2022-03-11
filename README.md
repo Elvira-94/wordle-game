@@ -359,6 +359,8 @@ This was fixed by adding logic to the Sweet Alert pop-up using the didClose attr
 #### Result:
 Now when the user hits enter, the pop-up closes, and allows the user to keep guessing since it's no longer focused. 
 
+***
+
 #### Bug: 
 If you guess a word that had multiple of the same letter and that letter occurred once in the correct word. The letter would show as incorrect in the keyboard. 
 
