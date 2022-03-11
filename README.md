@@ -1,10 +1,13 @@
 # **Wordle++ - Project Portfolio 2 - Javascript**
 
-Wordle++ is based on the popular New York Times online 5-letter word game. Wordle is a game of guessing words. Every day, you must guess a new word. You have six attempts, and each one provides some hints.
+<p align="center"><a href="https://elvira-94.github.io/wordle-game/" target="_blank" rel="noopener"><img src="docs/images/Responsiveness.png" width="80%" height="80%" alt="Wordle++ Am I responsive screenshot. Once clicked, opens the Wordle++ homepage."></a></p>
+
+
+**Wordle++** is based on the popular New York Times online 5-letter word game. Wordle is a game of guessing words. Every day, you must guess a new word. You have six attempts, and each one provides some hints.
 
 However, Wordle++ was created with customisation in mind as the user can easily change their mystery word count and even add more guesses! This gives the user a more fun and challenging way to play the game. How about guessing a mystery 3-letter word in 10 tries? It's harder than you'd think.  
 
-You can view the live site here - <a href="https://elvira-94.github.io/wordle-game/" target="_blank"> Wordle++ </a>
+You can view the live site here - <a href="https://elvira-94.github.io/wordle-game/" target="_blank" rel="noopener"> Wordle++</a>
 
 # User Experience (UX)
 
@@ -406,34 +409,14 @@ Further reading and troubleshooting on cloning a repository from GitHub can be f
 * [W3Schools Javascript HTML DOM CSS](https://www.w3schools.com/js/js_htmldom_css.asp) - to help change the style of elements using HTML DOM.
 * [Stack Overflow Progress Bar](https://stackoverflow.com/questions/41429906/how-to-display-data-label-inside-html5-progress-bar-cross-browser) - to help style and display the game stats progress bar to the site.
 * [Web Devs Planet Font Awesome Icon](https://www.webdevsplanet.com/post/fontawesome-icons-not-showing#:~:text=Make%20sure%20that%20the%20Font,U%20while%20on%20the%20page.) - to help solve why the font awesome icons were not showing up on site following instructions by John Mwaniki.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+* [Mozilla Math Random](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random) - to help solididify learnig Math Random objects in code.
+* [Stack Overflow Reload page](https://stackoverflow.com/questions/8174282/link-to-reload-current-page) - to get solution to help implement reloading Wordle++ page.
+* [Stack Overflow Root Color Variables](https://stackoverflow.com/questions/37801882/how-to-change-css-root-color-variables-in-javascript) - to get solution to help change styling of root color variables in code.
+* [Stack Overflow Calling Header without Jquery](https://stackoverflow.com/questions/60061172/how-to-get-header-tag-without-using-jquery) - to get solution to help call header element on page.
+* [Stack Overflow Jhint error](hhttps://stackoverflow.com/questions/1963102/what-does-the-jslint-error-body-of-a-for-in-should-be-wrapped-in-an-if-statemen) - to help fix jshint error in code.
+* [Javascript Tutorial Website](https://www.javascripttutorial.net/javascript-dom/javascript-width-height/) - to help get width and heights of elements in codde.
+* [Mastering JS Tutorial](https://masteringjs.io/tutorials/fundamentals/parameters) - to help understand parameter naming in javascript code.
 
 # Acknowledgements
+
+The Wordle++ game was built as part of my Portfolio Project 2 on behalf of a Full Stack Software Developer Diploma at the Code Institute. I'd like to thank the inspiration for this website from my mentor [Richard Wells](https://www.linkedin.com/in/richard-wells-fullstack/), my partner [Dan](https://www.linkedin.com/in/danielredmond1/), and co-cohort facilitator [Kasia Bogucka](https://www.linkedin.com/in/kasbogucka/), as well as the Slack community and everyone at the Code Institute for their help and loving support. Creating Wordle++ has taught me a lot, and I'm now much more confident in my abilities when it comes to planning, building, testing, and deploying a fully working site based in Javascript.
