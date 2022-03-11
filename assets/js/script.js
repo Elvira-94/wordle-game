@@ -562,6 +562,7 @@ function update() { // iterate all the letters of the word that the user guessed
             let keyTile = document.getElementById('Key' + letter);
             keyTile.classList.remove('inWord');
             keyTile.classList.add('correct');
+            keyTile.style.color = "#222F3E";
             correct += 1;
             letterCount[letter] -= 1; // deduct the letter
         }
@@ -599,6 +600,7 @@ function update() { // iterate all the letters of the word that the user guessed
                     currTile.classList.add('inWord');
                     let keyTile = document.getElementById('Key' + letter);
                     keyTile.classList.add('inWord');
+                    keyTile.style.color = "#222F3E";
                 } else {
                     currTile.classList.add('notInWord');
                 }
