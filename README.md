@@ -91,36 +91,36 @@ The header section contains the following:
 The title  aims to inform the user about the nature of the game from the start. An anchor tag was created here so that the player could also refresh the game. The question icon to the left of the title brings the player to the game instructions. Then the poll icon on the right of the title and the cog item takes the user to their game stats and settings of the game. 
 
 The title of Worlde++ was chosen to indicate to the user that it is an incremental improvement on the popular Wordle game created by Josh Wardle. The '++' syntax is widely used in programming languages to mark the increment of a variable. 
-<p align="center"><img src="docs/images/header.png" width="50%" height="50%" alt="Header Elements"></p></details><br />
+<p align="center"><img src="docs/images/header.png" width="50%" height="50%" alt="Header Elements"></p><br />
 
 **Game Instructions (Sweet Alert):**
 The game instructions serves as a pop-up to welcome the user to the game from the very beginning. It is styled as a question mark icon on the left side of the title which, when pressed will allow the user to access the game instructions. The Sweet Alert was used instead of CSS classes to provide a better experience for the user.
-<p align="center"><img src="docs/images/game-instructions.png" width="50%" height="50%" alt="Game Instructions"></p></details><br />
+<p align="center"><img src="docs/images/game-instructions.png" width="50%" height="50%" alt="Game Instructions"></p><br />
 
 **Game Stats (Sweet Alert):**
 The poll icon when clicked presents the user with a Sweet Alert pop-up to give the user access to their game stats for the current word length they have configured in the game. If the user changes their word length setting, the game stats will change accordingly. 
-<p align="center"><img src="docs/images/game-stats.png" width="50%" height="50%" alt="Game Stats"></p></details><br />
+<p align="center"><img src="docs/images/game-stats.png" width="50%" height="50%" alt="Game Stats"></p><br />
 
 **Game Settings (Sweet Alert):**
 The cog icon when clicked presents the user with a Sweet Alert pop-up which allows the user to easily configure their games settings. The user can select the word length (minimum of 3 letters, maximum of 7 letters) and number of guesses (minimum of 1 guess, maximum of 10 guesses).
-<p align="center"><img src="docs/images/settings.png" width="50%" height="50%" alt="Game Settings"></p></details><br />
+<p align="center"><img src="docs/images/settings.png" width="50%" height="50%" alt="Game Settings"></p><br />
 
 **Game Board:**
 The purpose of the game board is to provide a grid of tiles where the user's guesses will appear. Each tile will represent a letter and each row will represent a word/guess. When the user enters a word, and submits their guess, tiles will change colour to indicate whether the letter is correct (green color), incorrect (grey color), or correct in the wrong position (yellow color).
 
 The size of the game board scales dynamically based on the user's screen size and tile size also takes into consideration the word length configuration that the user specified. Please see pictures below for reference.
-<p align="center"><img src="docs/images/game-board-with-input.png" width="50%" height="50%" alt="Game board with input"></p></details><br />
+<p align="center"><img src="docs/images/game-board-with-input.png" width="50%" height="50%" alt="Game board with input"></p><br />
 
-<p align="center"><img src="docs/images/game-board.png" width="50%" height="50%" alt="Game board that is dynamically responsive to user's screen"></p></details><br />
+<p align="center"><img src="docs/images/game-board.png" width="50%" height="50%" alt="Game board that is dynamically responsive to user's screen"></p><br />
 
 **Keyboard:**
 The keyboard provides the user with a way to visually see what characters they've guessed and the results of those guesses. Once the user makes a guess, the corresponding tile to the letters guessed will change color based on the result of the guess similiarly to the colors of the tiles of the game board.
-<p align="center"><img src="docs/images/keyboard-with-input.png" width="50%" height="50%" alt="Keyboard that is dynamically responsive to user's screen size"></p></details><br />
+<p align="center"><img src="docs/images/keyboard-with-input.png" width="50%" height="50%" alt="Keyboard that is dynamically responsive to user's screen size"></p><br />
 
 ## User Name Input Screen
 
 The "Who's Playing?" Sweet Alert pop-up prompts the user to input their name after clicking "Play" on the initial game instructions pop-up. If we have previously had a user play the game, we prepopulate the input with the last user's name.
- <p align="center"><img src="docs/images/user-name-input.png" width="50%" height="50%" alt="Enter your name to play"></p></details><br />
+ <p align="center"><img src="docs/images/user-name-input.png" width="50%" height="50%" alt="Enter your name to play"></p><br />
 
 # Future Features
 
@@ -215,7 +215,7 @@ I would like to add this functionality to Wordle++ in the future.
 
     ### The site at the time of the initial report
 
-    ![Contrast of Site Initially](docs/images/contrast-check-initial.png)
+    <p align="center"><img src="docs/images/contrast-check-initial.png" width="50%" height="50%" alt="Contrast of the site initially"></p><br />
 
     ### Improved Contrast Report
 
@@ -223,8 +223,8 @@ I would like to add this functionality to Wordle++ in the future.
 
     ### The site after contrast improvements were made
 
-    ![Contrast of Site After Improvements](docs/images/contrast-check-change.png)
-
+    <p align="center"><img src="docs/images/contrast-check-change.png" width="50%" height="50%" alt="Contrast of Site After Improvements"></p><br />
+    
 ## Responsiveness Testing
 
 * Responsiveness of the site was tested manually, using both [Google Chrome Dev Tools](https://developer.chrome.com/docs/devtools/), [Responsive Design Checker](https://www.responsivedesignchecker.com/) and [Am I responsive](http://ami.responsivedesign.is/). The site has also been tested on multiple mobile devices physically also by friends and family. 
