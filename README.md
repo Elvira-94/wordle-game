@@ -205,6 +205,12 @@ I would like to add this functionality to Wordle++ in the future.
 
     ![Lighthouse Report](docs/images/lighthouse-report-final.png)
 
+    ### Compressed Images
+
+    On a further note, a total amount of 27 KB was saved when using [Compressor](https://compressor.io/) for the site's images. 
+
+    ![Compressed Images](docs/images/compressed-images.png)
+
 ## Accessibility Testing
 
 * Running the color contrast report showed me that I had a light font (#fff) on top of a light background when tiles change to yellow or green colors depending on the accuracy of the user's guess. This allowed me to re-evaluate my font color choice and to use a dark font against these backgrounds, which significantly improved report results.
