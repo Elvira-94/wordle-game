@@ -423,7 +423,7 @@ Further reading and troubleshooting on cloning a repository from GitHub can be f
 * [Stack Overflow Reload page](https://stackoverflow.com/questions/8174282/link-to-reload-current-page) - to get solution to help implement reloading Wordle++ page.
 * [Stack Overflow Root Color Variables](https://stackoverflow.com/questions/37801882/how-to-change-css-root-color-variables-in-javascript) - to get solution to help change styling of root color variables in code.
 * [Stack Overflow Calling Header without Jquery](https://stackoverflow.com/questions/60061172/how-to-get-header-tag-without-using-jquery) - to get solution to help call header element on page.
-* [Stack Overflow Jhint error](hhttps://stackoverflow.com/questions/1963102/what-does-the-jslint-error-body-of-a-for-in-should-be-wrapped-in-an-if-statemen) - to help fix jshint error in code.
+* [Stack Overflow Jhint error](https://stackoverflow.com/questions/1963102/what-does-the-jslint-error-body-of-a-for-in-should-be-wrapped-in-an-if-statemen) - to help fix jshint error in code.
 * [Javascript Tutorial Website](https://www.javascripttutorial.net/javascript-dom/javascript-width-height/) - to help get width and heights of elements in codde.
 * [Mastering JS Tutorial](https://masteringjs.io/tutorials/fundamentals/parameters) - to help understand parameter naming in javascript code.
 
