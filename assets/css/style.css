@@ -31,7 +31,7 @@ li {
     display: inline-block;
 }
 
-.header {
+header {
     max-width: 32rem;
     margin: 0 auto;
     display: grid;
@@ -189,6 +189,7 @@ div#keyboard-container {
     color: #fff;
 }
 
+/* Center the keyboard on the screen when min width is met (keyboards max size) */
 @media screen and (min-width: 30rem) {
     .keyboard-row {
         margin: 0 auto;

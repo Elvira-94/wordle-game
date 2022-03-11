@@ -114,14 +114,14 @@ function displayUserStats(user, wordLength) {
     divContainer.innerText = 'Word Length: ' + wordLength;
 
     let totalGuesses = 0;
-    for (let i = 0; i < length(Object.keys(stats)); i++) {
-        item = Object.keys(stats)[i];
-        totalGuesses = totalGuesses + parseInt(stats[parseInt(item) + 1]);
+    for (let i = 0; i < Object.keys(stats).length; i++) {
+        let item = Object.keys(stats)[i];
+        totalGuesses = totalGuesses + parseInt(stats[parseInt(item)]);
     }
 
-    for (let i = 0; i < length(Object.keys(stats)); i++) {
-        item = Object.keys(stats)[i];
-        let guessNum = parseInt(item) + 1;
+    for (let i = 0; i < Object.keys(stats).length; i++) {
+        let item = Object.keys(stats)[i];
+        let guessNum = parseInt(item);
         let percentage = Math.ceil((parseInt(stats[guessNum]) / totalGuesses) * 100);
         let innerDiv = document.createElement('div');
 
@@ -235,7 +235,7 @@ function clearGame() {
 
 function drawGrid() {
     let board = document.getElementById('board');
-    let header = document.getElementsByClassName('header')[0];
+    let header = document.getElementsByTagName('header')[0];
     board.style.width = header.offsetWidth;
 
     let tileSize = calculateTileSize({
