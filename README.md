@@ -195,7 +195,7 @@ I would like to add this functionality to Wordle++ in the future.
 
 ## Lighthouse Testing
 
-* The lighthouse report initially showed a result of 91 for performance, with a recommendation to move a render blocking resource to the bottom of the page. The resource in question was the animate.css library I was importing in index.html. Once this was addressed, performance increased to 99.
+* The lighthouse report initially showed a result of 91 for performance, with a recommendation to move a render blocking resource to the bottom of the page. The resource in question was the animate.css library I was importing in index.html. Once this was addressed, performance increased to 100.
 
     ### Initial Lighthouse report
 
@@ -203,7 +203,7 @@ I would like to add this functionality to Wordle++ in the future.
 
     ### Lighthouse report after moving animate.min.css to bottom of index.html
 
-    ![Lighthouse Report](docs/images/lighthouse-report-2.png)
+    ![Lighthouse Report](docs/images/lighthouse-report-final.png)
 
 ## Accessibility Testing
 
